@@ -1,0 +1,31 @@
+{
+  "name": "pils-teller",
+  "version": "1.0.0",
+  "description": "Nettside som holder oversikt over mengden pils som blir konsumert over tid.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client-install": "cd client && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hakondh/pils-teller.git"
+  },
+  "author": "Håkon Dalen Hestnes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hakondh/pils-teller/issues"
+  },
+  "homepage": "https://github.com/hakondh/pils-teller#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
