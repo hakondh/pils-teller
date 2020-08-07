@@ -1,11 +1,13 @@
 import React from "react";
+import "../../App.css";
 import "./Home.css";
 
 function Home(props) {
   return (
-    <div>
-      <h1>20 pils</h1>
-      <p>har blitt drukket siden 3/8/2020.</p>
+    <div className="container">
+      <h1 className="header">20 pils</h1>
+      <br />
+      <p className="text">har blitt drukket siden 3/8/2020.</p>
     </div>
   );
 }

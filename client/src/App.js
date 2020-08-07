@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "./Components/Home/Home";
+import UserRegistration from "./Components/UserRegistration/UserRegistration";
+import LogIn from "./Components/LogIn/LogIn";
 import NavBar from "./Components/NavBar/NavBar";
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/registrer-deg" component={UserRegistration} />
+        <Route path="/logg-inn" component={LogIn} />
       </Switch>
     </BrowserRouter>
   );
