@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
   try {
@@ -30,9 +31,13 @@ router.post("/login", (req, res) => {
         return res.status(400).send("The user does not exist.");
       }
       //Check if password is correct
-      const valid = bcrypt.compare(req.body.password, data[0].password);
+      const user = data[0];
+      const valid = bcrypt.compare(req.body.password, user.password);
       if (!valid) return res.status(400).send("Invalid password.");
-      res.send("Logged in!");
+
+      //Create a token if the login was successful
+      const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
+      res.header("auth-token", token).send(token);
     });
   } catch (err) {
     console.log(err);

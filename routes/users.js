@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const verify = require("./verifyToken");
 
 // Get all users
-router.get("/", (req, res) => {
+router.get("/", verify, (req, res) => {
   req.app.get("usersdao").getUsers((status, data) => {
     res.status(status);
     res.json(data);

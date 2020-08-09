@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
+const dotenv = require("dotenv");
 const port = 5000;
 // Maybe add body-parser? req.body has worked so far...
 
@@ -19,12 +20,14 @@ app.use(cors());
   next();
 }); */
 
+dotenv.config(); // Access environment variables
+
 // Setting up the connection pool
 let pool = mysql.createPool({
   connectionLimit: 10,
-  host: "localhost",
+  host: "10.0.0.21",
   user: "root",
-  password: "orkide123",
+  password: process.env.DB_PASSWORD,
   database: "pilstellerdb",
   debug: false,
 });

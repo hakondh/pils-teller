@@ -10,6 +10,7 @@ module.exports = class Dao {
       console.log("dao: connected to database");
       // If there are any errors getting a connection
       if (err) {
+        console.log(err);
         console.log("dao: error connecting");
         callback(500, { error: "error connecting" });
       }
