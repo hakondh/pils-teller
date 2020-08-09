@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../App.css";
 import "./UserRegistration.css";
-import UserRegistrationService from "../../Services/UserRegistrationService";
 
 function UserRegistration(props) {
   const [name, setName] = useState("");

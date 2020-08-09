@@ -1,19 +1,17 @@
-POST http://localhost:5000/auth/login
-Content-Type: application/json
-
-{
-    "name": "tester",
-    "password": "takk"
-}
-
-
-###
-
 POST http://localhost:5000/auth/register
 Content-Type: application/json 
 
 {
-    "name": "tester",
-    "password": "takk"
+    "name": "mjau",
+    "password": "mjau"
 }
 
+###
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "name": "mjau",
+    "password": "mjau"
+}
