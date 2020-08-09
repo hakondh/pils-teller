@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../../App.css";
 import "./UserRegistration.css";
 import UserRegistrationService from "../../Services/UserRegistrationService";
@@ -9,7 +10,17 @@ function UserRegistration(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    UserRegistrationService.postUsers(name, password);
+    axios
+      .post("/auth/register", {
+        name: name,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

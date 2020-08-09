@@ -1,11 +1,22 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../../App.css";
 
 function LogIn(props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .get("/users/" + name)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="container">

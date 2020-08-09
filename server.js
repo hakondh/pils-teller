@@ -22,7 +22,7 @@ app.use(cors());
 // Setting up the connection pool
 let pool = mysql.createPool({
   connectionLimit: 10,
-  host: "localhost",
+  host: "10.0.0.21",
   user: "root",
   password: "orkide123",
   database: "pilstellerdb",
