@@ -9,13 +9,12 @@ function LogIn(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .get("/users/" + name)
-      .then((res) => {
-        console.log(res);
+      .post("/auth/login", {
+        name: name,
+        password: password,
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (

@@ -4,12 +4,16 @@ const bcrypt = require("bcrypt");
 
 router.post("/register", async (req, res) => {
   try {
+    // Check if the username is already in use
+    const authdao = req.app.get("authdao");
+    authdao.checkUser(req.body.name, (status, data) => {
+      if (data.length > 0)
+        return res.status(400).send("Username already exists.");
+    });
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    req.app
-      .get("authdao")
-      .postUser([req.body.name, hashedPassword], (status, data) => {
-        res.status(status);
-      });
+    authdao.postUser([req.body.name, hashedPassword], (status, data) => {
+      res.status(status);
+    });
   } catch (err) {
     console.log(err);
     res.status(500).send("There was an error creating the user.");
