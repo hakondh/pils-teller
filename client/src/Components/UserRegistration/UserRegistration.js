@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../App.css";
 import "./UserRegistration.css";
-import BeerRegistrationService from "../../Services/BeerRegistrationService";
+import UserRegistrationService from "../../Services/UserRegistrationService";
 
 function UserRegistration(props) {
   const [name, setName] = useState("");
@@ -9,7 +9,7 @@ function UserRegistration(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    BeerRegistrationService.postUsers(name, password);
+    UserRegistrationService.postUsers(name, password);
   };
 
   return (
