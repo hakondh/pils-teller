@@ -13,7 +13,10 @@ function LogIn(props) {
         name: name,
         password: password,
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        props.history.push("/"); // Go to home when logged in
+      })
       .catch((err) => console.log(err));
   };
 

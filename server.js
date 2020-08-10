@@ -25,7 +25,7 @@ dotenv.config(); // Access environment variables
 // Setting up the connection pool
 let pool = mysql.createPool({
   connectionLimit: 10,
-  host: "10.0.0.21",
+  host: process.env.DB_HOST,
   user: "root",
   password: process.env.DB_PASSWORD,
   database: "pilstellerdb",
