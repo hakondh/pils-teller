@@ -5,6 +5,7 @@ import "../../App.css";
 function LogIn(props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +18,9 @@ function LogIn(props) {
         console.log(res);
         props.history.push("/"); // Go to home when logged in
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(err.response.data);
+      });
   };
 
   return (
@@ -45,6 +48,11 @@ function LogIn(props) {
         />
         <br />
         <br />
+        {error != "" && (
+          <div>
+            <p className="error">{error}</p>
+          </div>
+        )}
         <input type="submit" value="Logg inn" />
       </form>
     </div>

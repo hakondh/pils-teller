@@ -25,15 +25,17 @@ router.post("/login", (req, res) => {
   try {
     const authdao = req.app.get("authdao");
 
-    authdao.checkUser(req.body.name, (status, data) => {
+    authdao.checkUser(req.body.name, async (status, data) => {
       // Check if the user exists
       if (data.length == 0) {
-        return res.status(400).send("The user does not exist.");
+        return res
+          .status(400)
+          .send('Brukeren "' + req.body.name + '" finnes ikke.');
       }
       //Check if password is correct
       const user = data[0];
-      const valid = bcrypt.compare(req.body.password, user.password);
-      if (!valid) return res.status(400).send("Invalid password.");
+      const valid = await bcrypt.compare(req.body.password, user.password);
+      if (!valid) return res.status(400).send("Ugyldig passord.");
 
       //Create a token if the login was successful
       const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);

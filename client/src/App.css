@@ -5,3 +5,7 @@
   top: 200px;
   left: 10%;
 }
+
+.error {
+  color: red;
+}
