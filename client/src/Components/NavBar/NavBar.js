@@ -3,6 +3,14 @@ import { NavLink } from "react-router-dom";
 import logo from "./iconfinder_Beer_Mug_drink_3017884.png";
 
 function NavBar(props) {
+  const user = props.user;
+
+  const logOut = () => {
+    localStorage.removeItem("user");
+    props.history.push("/home");
+    window.location.reload();
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark ">
@@ -36,18 +44,44 @@ function NavBar(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/logg-inn">
-                Logg inn
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/registrer-deg">
-                Registrer deg
-              </NavLink>
-            </li>
-          </ul>
+          {user ? (
+            <ul className="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {user.name}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item">Profil</a>
+                  <a class="dropdown-item">Innstillinger</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" onClick={logOut}>
+                    Logg ut
+                  </a>
+                </div>
+              </li>
+            </ul>
+          ) : (
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/logg-inn">
+                  Logg inn
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/registrer-deg">
+                  Registrer deg
+                </NavLink>
+              </li>
+            </ul>
+          )}
         </div>
       </nav>
     </div>

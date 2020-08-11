@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const verify = require("./verifyToken");
 
 router.post("/register", async (req, res) => {
   try {
-    // Check if the username is already in use
+    // Check if the name is already in use
     const authdao = req.app.get("authdao");
     authdao.checkUser(req.body.name, (status, data) => {
       if (data.length > 0)
@@ -38,13 +39,24 @@ router.post("/login", (req, res) => {
       if (!valid) return res.status(400).send("Ugyldig passord.");
 
       //Create a token if the login was successful
-      const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET);
-      res.header("auth-token", token).send(token);
+      const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET, {
+        expiresIn: 86400,
+      }); // This token will expire in 24 hours
+      res.status(200).send({
+        name: req.body.name,
+        accessToken: token,
+      });
     });
   } catch (err) {
     console.log(err);
     res.send(500).send("There was an error logging in.");
   }
+});
+
+router.post("/check-login-state", (req, res) => {
+  const token = req.get("auth-token");
+  console.log(token);
+  res.status(200).send("ok");
 });
 
 module.exports = router;
