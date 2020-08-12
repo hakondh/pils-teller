@@ -13,7 +13,9 @@ function App() {
   useEffect(() => {
     // Check if there is a user in localStorage
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) setCurrentUser(user);
+    if (user) {
+      setCurrentUser(user);
+    }
   }, []);
 
   return (
@@ -21,12 +23,17 @@ function App() {
       {/* {loggedIn && <h1>You are logged in!</h1>} */}
 
       <BrowserRouter>
-        <NavBar user={currentUser} />
+        {<NavBar user={currentUser} />}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/registrer-deg" component={UserRegistration} />
           <Route path="/logg-inn" component={LogIn} />
-          <Route path="/profil" component={Profile} />
+          <Route
+            path="/profil"
+            render={(props) => (
+              <Profile {...props} user={currentUser}></Profile>
+            )}
+          />
         </Switch>
       </BrowserRouter>
     </div>

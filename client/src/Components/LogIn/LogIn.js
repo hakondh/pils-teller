@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "../../Services/AuthService";
 import "../../App.css";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function LogIn(props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,22 +20,12 @@ function LogIn(props) {
       })
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data)); // Set token in localStorage
-        props.history.push("/"); // Go to home when logged in
+        history.push("/"); // Go to home after login
+        window.location.reload();
       })
       .catch((err) => {
         setError(err.response.data);
       });
-
-    /* AuthService.login(name, password).then(
-      () => {
-        console.log("pushing to home...");
-        props.history.push("/home");
-        window.location.reload();
-      },
-      (error) => {
-        setError(error);
-      }
-    ); */
   };
 
   return (

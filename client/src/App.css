@@ -1,4 +1,4 @@
-.container {
+/* .container {
   width: 750px;
   height: auto;
   position: absolute;
@@ -6,6 +6,12 @@
   left: 10%;
 }
 
+.text {
+  color: white;
+  font-size: 25px;
+}
+
 .error {
   color: red;
 }
+ */

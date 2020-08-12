@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import AuthService from "../../Services/AuthService";
+import React from "react";
 
 function Profile(props) {
-  const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
+  const user = props.user;
 
   return (
     <div className="container">
-      <h3>Velkommen, {currentUser.name}</h3>
+      <h3 className="text">{user.name}s profil</h3>
     </div>
   );
 }

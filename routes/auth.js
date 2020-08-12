@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const verify = require("./verifyToken");
 
 router.post("/register", async (req, res) => {
   try {
@@ -49,7 +48,7 @@ router.post("/login", (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.send(500).send("There was an error logging in.");
+    res.status(500).send("There was an error logging in.");
   }
 });
 
