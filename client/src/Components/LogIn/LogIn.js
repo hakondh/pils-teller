@@ -32,7 +32,6 @@ function LogIn(props) {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <h1>Logg inn</h1>
-        <br />
         <input
           id="nameInput"
           type="text"

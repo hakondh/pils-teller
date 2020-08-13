@@ -5,7 +5,26 @@ body {
   padding: 0;
   margin: 0;
   background-color: black;
+  /* Location of the image */
   background-image: url("./Images/beer-199650_1920.jpg");
+
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: black;
   /* margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
@@ -13,14 +32,16 @@ body {
 
 /* Global css */
 .container {
-  width: 100%;
+  width: 80%;
   margin: auto;
   overflow: hidden;
+  color: #dcab2d;
 }
 
 header {
   background-color: #171716;
-  min-height: px;
+  min-height: 10px;
+  /* border-bottom: #dcab2d 1px solid; */
 }
 
 header a {
@@ -29,16 +50,8 @@ header a {
 }
 
 header ul {
-  margin: 0;
-  padding: 0;
-}
-
-header #ul-right {
-  float: right;
-}
-
-header #ul-left {
-  float: left;
+  margin: 0px;
+  padding: 0px;
 }
 
 header li {
@@ -48,12 +61,24 @@ header li {
 
 header nav {
   float: right;
-  margin-top: 2px;
+  margin-top: 13px;
 }
 
 header #logo {
-  margin-top: 5px;
+  margin-top: 4px;
   margin-left: 4px;
+}
+
+header #logo-box {
+  /* white-space: nowrap; */
+}
+
+header #logo-box p {
+  display: inline;
+}
+
+header #logo-box p {
+  color: white;
 }
 
 header li a,
@@ -61,7 +86,7 @@ header li a,
   display: inline-block;
   color: #dcab2d;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0px 5px;
   text-decoration: none;
 }
 
@@ -70,6 +95,13 @@ header li a:hover,
   color: #b38b24;
 }
 
+/* Not in use, maybe add this functionality later (active link color/font) */
+header .current a {
+  color: #b38b24;
+  font-weight: bold;
+}
+
+/* Dropdown in header */
 header li.dropdown {
   display: inline-block;
 }
@@ -98,6 +130,11 @@ header .dropdown-content a:hover {
 
 header .dropdown:hover .dropdown-content {
   display: block;
+}
+
+#main h1 {
+  font-size: 125px;
+  margin: 0px;
 }
 
 code {

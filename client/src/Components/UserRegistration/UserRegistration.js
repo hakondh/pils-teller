@@ -26,7 +26,6 @@ function UserRegistration(props) {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <h1>Registrer deg</h1>
-        <br />
         <input
           id="nameInput"
           type="text"
