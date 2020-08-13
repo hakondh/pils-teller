@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Home/Home";
 import UserRegistration from "./Components/UserRegistration/UserRegistration";
 import LogIn from "./Components/LogIn/LogIn";
 import NavBar from "./Components/NavBar/NavBar";
 import Profile from "./Components/Profile/Profile";
+import BeerRegistration from "./Components/BeerRegistration/BeerRegistration";
 import { UserProvider } from "./UserContext";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
-  const history = useHistory();
+  /* const history = useHistory(); */
 
   useEffect(() => {
     // Check if there is a user in localStorage
@@ -27,7 +28,6 @@ function App() {
       <BrowserRouter>
         <UserProvider value={currentUser}>
           <NavBar />
-
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/registrer-deg" component={UserRegistration} />
@@ -36,6 +36,15 @@ function App() {
               path="/profil"
               render={(props) => (
                 <Profile {...props} user={currentUser}></Profile>
+              )}
+            />
+            <Route
+              path="/registrer-pils"
+              render={(props) => (
+                <BeerRegistration
+                  {...props}
+                  user={currentUser}
+                ></BeerRegistration>
               )}
             />
           </Switch>

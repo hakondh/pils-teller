@@ -3,17 +3,18 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-router.post("/register", async (req, res) => {
+router.post("/register", (req, res) => {
   try {
     // Check if the name is already in use
     const authdao = req.app.get("authdao");
-    authdao.checkUser(req.body.name, (status, data) => {
-      if (data.length > 0)
-        return res.status(400).send("Username already exists.");
-    });
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    authdao.postUser([req.body.name, hashedPassword], (status, data) => {
-      res.status(status);
+    authdao.checkUser(req.body.name, async (status, data) => {
+      if (data.length > 0) {
+        return res.status(400).send("Navnet er allerede tatt.");
+      }
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      authdao.postUser([req.body.name, hashedPassword], (status, data) => {
+        res.status(200).send("Created user.");
+      });
     });
   } catch (err) {
     console.log(err);
@@ -42,6 +43,7 @@ router.post("/login", (req, res) => {
         expiresIn: 86400,
       }); // This token will expire in 24 hours
       res.status(200).send({
+        id: user.id,
         name: req.body.name,
         accessToken: token,
       });

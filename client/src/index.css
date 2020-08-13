@@ -73,12 +73,9 @@ header #logo-box {
   /* white-space: nowrap; */
 }
 
-header #logo-box p {
+header #alpha-tag {
   display: inline;
-}
-
-header #logo-box p {
-  color: white;
+  color: #dcab2d;
 }
 
 header li a,
@@ -135,6 +132,7 @@ header .dropdown:hover .dropdown-content {
 #main h1 {
   font-size: 125px;
   margin: 0px;
+  padding: 0px;
 }
 
 code {

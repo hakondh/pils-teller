@@ -50,7 +50,7 @@ function LogIn(props) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br />
+        {!error && <br />}
         <br />
         {error !== "" && (
           <div>

@@ -32,16 +32,22 @@ let pool = mysql.createPool({
   debug: false,
 });
 
-// Routes
-// Users
+/* Auth */
+const authRoute = require("./routes/auth");
+const AuthDao = require("./dao/AuthDao");
+app.use("/auth", authRoute);
+app.set("authdao", new AuthDao(pool));
+
+/* Users */
 const usersRoute = require("./routes/users");
 const UsersDao = require("./dao/UsersDao.js");
 app.use("/users", usersRoute);
 app.set("usersdao", new UsersDao(pool));
 
-const authRoute = require("./routes/auth");
-const AuthDao = require("./dao/AuthDao");
-app.use("/auth", authRoute);
-app.set("authdao", new AuthDao(pool));
+/* Beers */
+const beersRoute = require("./routes/beers");
+const BeersDao = require("./dao/BeersDao");
+app.use("/beers", beersRoute);
+app.set("beersdao", new BeersDao(pool));
 
 app.listen(port, () => console.log("Server started on port " + port));

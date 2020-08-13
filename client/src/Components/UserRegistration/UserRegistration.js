@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../App.css";
 import "./UserRegistration.css";
+import { useHistory } from "react-router-dom";
 
 function UserRegistration(props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,10 +18,11 @@ function UserRegistration(props) {
         password: password,
       })
       .then((res) => {
-        console.log(res);
+        history.push("/logg-inn");
+        window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.response.data);
       });
   };
 
@@ -44,8 +48,13 @@ function UserRegistration(props) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {!error && <br />}
         <br />
-        <br />
+        {error !== "" && (
+          <div>
+            <p className="error">{error}</p>
+          </div>
+        )}
         <input type="submit" value="Registrer" />
       </form>
     </div>

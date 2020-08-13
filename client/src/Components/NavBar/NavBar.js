@@ -18,18 +18,12 @@ function NavBar(props) {
   return (
     <header>
       <div>
-        <div id="logo-box">
-          <Link to="/">
-            <img
-              id="logo"
-              src={logo}
-              height="40px"
-              width="auto"
-              alt="pils"
-            ></img>
-          </Link>
-          <p>Alfa</p>
-        </div>
+        {/* <div id="logo-box"> */}
+        <Link to="/">
+          <img id="logo" src={logo} height="40px" width="auto" alt="pils"></img>
+        </Link>
+        <p id="alpha-tag">alfa</p>
+        {/* </div> */}
 
         <nav>
           {user ? (
