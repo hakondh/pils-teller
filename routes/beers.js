@@ -2,14 +2,15 @@ const express = require("express");
 const router = express.Router();
 const verify = require("../middleware/verifyToken");
 
-// Get all users
-router.get("/", verify, (req, res) => {
-  req.app.get("usersdao").getUsers((status, data) => {
+/* Get beers */
+router.get("/", (req, res) => {
+  req.app.get("beersdao").getBeers((status, data) => {
     res.status(status);
     res.json(data);
   });
 });
 
+/* Post beers */
 router.post("/", (req, res) => {
   console.log(req.body.amount);
   req.app
