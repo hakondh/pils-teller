@@ -38,6 +38,12 @@ body {
   color: #dcab2d;
 }
 
+.button {
+  background: #dcab2d;
+  border: 0;
+  height: 25px;
+}
+
 header {
   background-color: #171716;
   min-height: 10px;
@@ -130,9 +136,22 @@ header .dropdown:hover .dropdown-content {
 }
 
 #main h1 {
-  font-size: 125px;
+  font-size: 200px;
   margin: 0px;
   padding: 0px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  #main h1 {
+    font-size: 100px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #main p {
+    width: 50%;
+  }
 }
 
 code {

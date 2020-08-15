@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../App.css";
 import "./Home.css";
 import axios from "axios";
+import WeeklyDrunkard from "../WeeklyDrunkard/WeeklyDrunkard";
 
 function Home(props) {
   const [beers, setBeers] = useState(0);
@@ -24,7 +25,9 @@ function Home(props) {
     <section id="main">
       <div className="container">
         <h1 className="header">{beers} pils</h1>
-        <p className="text">har blitt drukket siden 3/8/2020.</p>
+        <p className="text">har blitt drukket siden 13/8/2020.</p>
+        <br />
+        {/* <WeeklyDrunkard></WeeklyDrunkard> */}
       </div>
     </section>
   );

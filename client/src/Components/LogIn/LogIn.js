@@ -57,7 +57,7 @@ function LogIn(props) {
             <p className="error">{error}</p>
           </div>
         )}
-        <input type="submit" value="Logg inn" />
+        <input className="button" type="submit" value="Logg inn" />
       </form>
     </div>
   );

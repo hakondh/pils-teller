@@ -55,7 +55,7 @@ function UserRegistration(props) {
             <p className="error">{error}</p>
           </div>
         )}
-        <input type="submit" value="Registrer" />
+        <input className="button" type="submit" value="Registrer" />
       </form>
     </div>
   );

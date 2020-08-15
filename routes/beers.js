@@ -10,6 +10,14 @@ router.get("/", (req, res) => {
   });
 });
 
+/* Get the weekly drunkard */
+router.get("/weekly-drunkard", (req, res) => {
+  req.app.get("beersdao").getWeeklyDrunkard((status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
 /* Post beers */
 router.post("/", (req, res) => {
   console.log(req.body.amount);

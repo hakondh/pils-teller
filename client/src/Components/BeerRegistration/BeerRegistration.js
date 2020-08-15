@@ -43,7 +43,7 @@ function BeerRegistration(props) {
             <p className="error">{error}</p>
           </div>
         )} */}
-        <input type="submit" value="Registrer pils" />
+        <input className="button" type="submit" value="Registrer pils" />
       </form>
     </div>
   );
