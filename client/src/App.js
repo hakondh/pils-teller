@@ -7,6 +7,7 @@ import LogIn from "./Components/LogIn/LogIn";
 import NavBar from "./Components/NavBar/NavBar";
 import Profile from "./Components/Profile/Profile";
 import BeerRegistration from "./Components/BeerRegistration/BeerRegistration";
+import Statistics from "./Components/Statistics/Statistics";
 import { UserProvider } from "./UserContext";
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                 ></BeerRegistration>
               )}
             />
+            <Route path="/statistikk" component={Statistics}></Route>
           </Switch>
         </UserProvider>
       </BrowserRouter>

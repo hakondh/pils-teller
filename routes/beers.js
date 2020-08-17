@@ -18,6 +18,13 @@ router.get("/weekly-drunkard", (req, res) => {
   });
 });
 
+router.get("/beer-sum-per-user", (req, res) => {
+  req.app.get("beersdao").getBeerSumPerUser((status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
 /* Post beers */
 router.post("/", (req, res) => {
   console.log(req.body.amount);

@@ -23,12 +23,12 @@ module.exports = class BeersDao extends Dao {
     );
   }
 
-  getConsumerLeaderboard(callback) {
+  getBeerSumPerUser(callback) {
     super.query(
-      "SELECT sum(amount) AS count, NAME" +
-        "FROM beers" +
-        "INNER JOIN users ON beers.user_id=users.id" +
-        "GROUP BY user_id" +
+      "SELECT sum(amount) AS count, NAME " +
+        "FROM beers " +
+        "INNER JOIN users ON beers.user_id=users.id " +
+        "GROUP BY user_id " +
         "ORDER BY count DESC;",
       [],
       callback
