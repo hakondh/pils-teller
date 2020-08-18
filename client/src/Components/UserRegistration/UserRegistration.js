@@ -8,6 +8,7 @@ function UserRegistration(props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -18,11 +19,38 @@ function UserRegistration(props) {
         password: password,
       })
       .then((res) => {
+        fileUploadHandler();
         history.push("/logg-inn");
         window.location.reload();
       })
       .catch((err) => {
         setError(err.response.data);
+      });
+  };
+
+  const fileSelectedHandler = (e) => {
+    e.preventDefault();
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append("image", selectedFile, selectedFile.name);
+    axios
+      .put("/users/" + name + "/image", fd, {
+        onDownloadProgress: (progressEvent) => {
+          console.log(
+            "Upload progress " +
+              Math.round((progressEvent.loaded / progressEvent.total) * 100) +
+              "%"
+          );
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -55,6 +83,9 @@ function UserRegistration(props) {
             <p className="error">{error}</p>
           </div>
         )}
+        <input type="file" onChange={fileSelectedHandler} />
+        <br />
+        <br />
         <input className="button" type="submit" value="Registrer" />
       </form>
     </div>

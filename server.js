@@ -50,4 +50,7 @@ const BeersDao = require("./dao/BeersDao");
 app.use("/beers", beersRoute);
 app.set("beersdao", new BeersDao(pool));
 
+const imagesRoute = require("./routes/images");
+app.use("/images", imagesRoute);
+
 app.listen(port, () => console.log("Server started on port " + port));

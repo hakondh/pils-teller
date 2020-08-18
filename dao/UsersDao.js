@@ -9,4 +9,9 @@ module.exports = class UsersDao extends Dao {
   getUser(name, callback) {
     super.query("SELECT * from users WHERE name = ?", name, callback);
   }
+
+  // Adds or updates the image of a user
+  putImage(arr, callback) {
+    super.query("UPDATE users SET image = ? WHERE name = ?", arr, callback);
+  }
 };

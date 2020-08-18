@@ -24,7 +24,7 @@ function WeeklyDrunkard(props) {
               <span key={drunkard.NAME}>
                 {drunkard.NAME}
                 {i < drunkards.length - 1
-                  ? [i == drunkards.length - 2 ? " og " : ", "]
+                  ? [i === drunkards.length - 2 ? " og " : ", "]
                   : ", med " + drunkard.count + " pils."}
               </span>
             ))
