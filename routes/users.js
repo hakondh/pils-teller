@@ -30,4 +30,11 @@ router.put("/:name/image", upload.single("image"), (req, res) => {
     });
 });
 
+router.get("/:id/beers", (req, res) => {
+  req.app.get("usersdao").getUserBeers(req.params.id, (status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
 module.exports = router;

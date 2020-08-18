@@ -1,12 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import UserContext from "../../UserContext";
 import { useHistory } from "react-router-dom";
 
 function BeerRegistration(props) {
   const [beers, setBeers] = useState(0);
-  const user = useContext(UserContext);
   const history = useHistory();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleSubmit = (e) => {
     axios

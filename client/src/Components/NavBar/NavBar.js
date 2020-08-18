@@ -50,6 +50,9 @@ function NavBar(props) {
           ) : (
             <ul>
               <li>
+                <Link to="/statistikk">Statistikk</Link>
+              </li>
+              <li>
                 <Link to="/logg-inn">Logg inn</Link>
               </li>
               <li>

@@ -14,4 +14,12 @@ module.exports = class UsersDao extends Dao {
   putImage(arr, callback) {
     super.query("UPDATE users SET image = ? WHERE name = ?", arr, callback);
   }
+
+  getUserBeers(id, callback) {
+    super.query(
+      "SELECT SUM(amount) AS sum FROM beers WHERE user_id = ?",
+      [id],
+      callback
+    );
+  }
 };

@@ -32,6 +32,9 @@ let pool = mysql.createPool({
   debug: false,
 });
 
+// Make folder publicly accessible so that the front-end can access the profile pictures
+app.use("/images", express.static("images"));
+
 /* Auth */
 const authRoute = require("./routes/auth");
 const AuthDao = require("./dao/AuthDao");

@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function Profile(props) {
-  const user = props.user;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const path = "/images/" + user.image;
+  const [consumedBeers, setConsumedBeers] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/users/" + user.id + "/beers")
+      .then((res) => {
+        setConsumedBeers(res.data[0].sum);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="container">
-      <h3 className="text">{user.name}s profil</h3>
+      <br />
+      <img src={path} width="300px" height="auto" alt="Profilbilde" />
+      <h1>{user.name}</h1>
+      <p>
+        Antall pils konsumert: <span>{consumedBeers}</span>
+      </p>
     </div>
   );
 }

@@ -29,28 +29,15 @@ function App() {
       <BrowserRouter>
         <UserProvider value={currentUser}>
           <NavBar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/registrer-deg" component={UserRegistration} />
-            <Route path="/logg-inn" component={LogIn} />
-            <Route
-              path="/profil"
-              render={(props) => (
-                <Profile {...props} user={currentUser}></Profile>
-              )}
-            />
-            <Route
-              path="/registrer-pils"
-              render={(props) => (
-                <BeerRegistration
-                  {...props}
-                  user={currentUser}
-                ></BeerRegistration>
-              )}
-            />
-            <Route path="/statistikk" component={Statistics}></Route>
-          </Switch>
         </UserProvider>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/registrer-deg" component={UserRegistration} />
+          <Route path="/logg-inn" component={LogIn} />
+          <Route path="/profil" component={Profile} />
+          <Route path="/registrer-pils" component={BeerRegistration} />
+          <Route path="/statistikk" component={Statistics}></Route>
+        </Switch>
       </BrowserRouter>
     </div>
   );
