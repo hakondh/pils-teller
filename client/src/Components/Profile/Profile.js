@@ -3,7 +3,6 @@ import axios from "axios";
 
 function Profile(props) {
   const user = JSON.parse(localStorage.getItem("user"));
-  const path = "/images/" + user.image;
   const [consumedBeers, setConsumedBeers] = useState(null);
 
   useEffect(() => {
@@ -18,7 +17,12 @@ function Profile(props) {
   return (
     <div className="container">
       <br />
-      <img src={path} width="300px" height="auto" alt="Profilbilde" />
+      <img
+        src={"/images/" + user.image}
+        width="300px"
+        height="auto"
+        alt="Profilbilde"
+      />
       <h1>{user.name}</h1>
       <p>
         Antall pils konsumert: <span>{consumedBeers}</span>

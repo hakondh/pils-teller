@@ -25,8 +25,7 @@ router.put("/:id/image", upload.single("image"), (req, res) => {
   req.app
     .get("usersdao")
     .putImage([req.file.filename, req.params.id], (status, data) => {
-      res.status(status);
-      res.json(data);
+      res.status(status).send({ image: req.file.filename });
     });
 });
 

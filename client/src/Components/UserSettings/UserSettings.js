@@ -1,8 +1,10 @@
-/* import React, { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function UserSettings(props) {
+  const user = JSON.parse(localStorage.getItem("user"));
   const [selectedFile, setSelectedFile] = useState(null);
+  const [changed, setChanged] = useState(false);
 
   const fileSelectedHandler = (e) => {
     e.preventDefault();
@@ -13,7 +15,7 @@ function UserSettings(props) {
     const fd = new FormData();
     fd.append("image", selectedFile, selectedFile.name);
     axios
-      .put("/users/" + name + "/image", fd, {
+      .put("/users/" + user.id + "/image", fd, {
         onDownloadProgress: (progressEvent) => {
           console.log(
             "Upload progress " +
@@ -23,8 +25,10 @@ function UserSettings(props) {
         },
       })
       .then((res) => {
-        console.log(res);
-        window.location.reload();
+        const user = JSON.parse(localStorage.getItem("user"));
+        user.image = res.data.image;
+        localStorage.setItem("user", JSON.stringify(user));
+        setChanged(true);
       })
       .catch((err) => {
         console.log(err);
@@ -33,11 +37,16 @@ function UserSettings(props) {
   return (
     <div className="container">
       <h1>Innstillinger</h1>
+      <p>Velg et nytt profilbilde</p>
       <input type="file" onChange={fileSelectedHandler} />
-      <button className="button"></button>
+      <br />
+      <br />
+      <button className="button" onClick={fileUploadHandler}>
+        Last opp
+      </button>
+      {changed && <p>Profilbilde endret!</p>}
     </div>
   );
 }
 
 export default UserSettings;
- */
