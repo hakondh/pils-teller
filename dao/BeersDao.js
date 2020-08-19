@@ -43,4 +43,16 @@ module.exports = class BeersDao extends Dao {
       callback
     );
   }
+
+  getBeerOverTime(callback) {
+    console.log("Getting beers over time...");
+    super.query(
+      "SELECT SUM(amount) AS sum, CAST(reg_date AS DATE) AS date " +
+        "FROM beers " +
+        "GROUP BY CAST(reg_date AS DATE) " +
+        "ORDER BY date;",
+      [],
+      callback
+    );
+  }
 };

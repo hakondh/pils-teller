@@ -152,6 +152,7 @@ header .dropdown:hover .dropdown-content {
     font-size: 100px;
     margin: 0px;
     padding: 0px;
+    line-height: 105px;
   }
 
   #main p {

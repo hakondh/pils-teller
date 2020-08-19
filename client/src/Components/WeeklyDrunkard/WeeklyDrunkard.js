@@ -61,7 +61,7 @@ function WeeklyDrunkard(props) {
                     [drunkards.length > 1 ? " hver." : "."]}
               </span>
             ))
-          : "Hva i alle dager. Det er ikke registrert noen pils denne uken. "}
+          : "Hva i alle dager. Det er ikke registrert en eneste pils denne uken. "}
       </p>
     </div>
   );

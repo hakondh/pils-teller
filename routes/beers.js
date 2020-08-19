@@ -36,4 +36,11 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/beer-over-time", (req, res) => {
+  req.app.get("beersdao").getBeerOverTime((status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
 module.exports = router;

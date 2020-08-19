@@ -1,19 +1,27 @@
 .chart-div {
   margin-top: 20px;
+  margin-right: 20px;
   width: 400px;
   height: 300px;
-  /* border: 1px solid white; */
+  border: 1px solid #dcab2d;
+  float: left;
+  background-color: black;
 }
 
 @media (max-width: 768px) {
   .chart-div {
-    width: 370px;
-    height: 300px;
-    /* border: 1px solid white; */
+    width: 99.4%;
+    height: auto;
+    float: none;
+    text-align: center;
+  }
+
+  #statistics-container {
+    width: 100%;
   }
 }
 
 .chart-title {
-  color: white;
+  color: #dcab2d;
   text-align: center;
 }

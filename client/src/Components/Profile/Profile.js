@@ -20,7 +20,7 @@ function Profile(props) {
       <img
         className="decorated-img"
         src={"/images/" + user.image}
-        width="300px"
+        width="295px"
         height="auto"
         alt="Profilbilde"
       />
