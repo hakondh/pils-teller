@@ -77,6 +77,13 @@ function BeerOverTime(props) {
                 },
               },
             ],
+            yAxes: [
+              {
+                ticks: {
+                  fontColor: "white",
+                },
+              },
+            ],
           },
           tooltips: {
             displayColors: false,
