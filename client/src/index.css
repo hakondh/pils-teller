@@ -141,6 +141,11 @@ header .dropdown:hover .dropdown-content {
   padding: 0px;
 }
 
+.decorated-img {
+  margin-right: 10px;
+  border: 1px solid #dcab2d;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   #main h1 {

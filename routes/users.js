@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const upload = multer({ dest: "images/" });
+const fs = require("fs");
 const verify = require("../middleware/verifyToken");
 
 // Get all users

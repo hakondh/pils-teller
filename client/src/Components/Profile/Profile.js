@@ -18,6 +18,7 @@ function Profile(props) {
     <div className="container">
       <br />
       <img
+        className="decorated-img"
         src={"/images/" + user.image}
         width="300px"
         height="auto"

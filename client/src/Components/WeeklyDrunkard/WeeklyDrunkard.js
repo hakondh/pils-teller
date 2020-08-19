@@ -3,7 +3,7 @@ import axios from "axios";
 
 function WeeklyDrunkard(props) {
   const [drunkards, setDrunkards] = useState([]);
-  const [titleText, setTitleText] = useState("Ukens topp-drikker:");
+  const [titleText, setTitleText] = useState("Ukens topp-drikker");
   const [imagePaths, setImagePaths] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function WeeklyDrunkard(props) {
       .get("/beers/weekly-drunkard")
       .then((res) => {
         setDrunkards(res.data);
-        if (res.data.length > 1) setTitleText("Ukens topp-drikkere:");
+        if (res.data.length > 1) setTitleText("Ukens topp-drikkere");
         /* getImages(res.data); */
       })
       .catch((err) => console.log(err));
@@ -39,6 +39,7 @@ function WeeklyDrunkard(props) {
         <div>
           {drunkards.map((drunkard) => (
             <img
+              className="decorated-img"
               src={"/images/" + drunkard.image}
               alt={drunkard.name + "s profilbilde"}
               width="100px"
@@ -54,7 +55,10 @@ function WeeklyDrunkard(props) {
                 {drunkard.name}
                 {i < drunkards.length - 1
                   ? [i === drunkards.length - 2 ? " og " : ", "]
-                  : ", med " + drunkard.count + " pils."}
+                  : ", med " +
+                    drunkard.count +
+                    " pils" +
+                    [drunkards.length > 1 ? " hver." : "."]}
               </span>
             ))
           : "Hva i alle dager. Det er ikke registrert noen pils denne uken. "}
