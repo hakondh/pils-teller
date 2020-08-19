@@ -22,4 +22,8 @@ module.exports = class UsersDao extends Dao {
       callback
     );
   }
+
+  getUserImage(id, callback) {
+    super.query("SELECT image FROM users WHERE id = ?", [id], callback);
+  }
 };

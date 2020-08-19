@@ -30,8 +30,17 @@ router.put("/:name/image", upload.single("image"), (req, res) => {
     });
 });
 
+// Get sum of beers for a user
 router.get("/:id/beers", (req, res) => {
   req.app.get("usersdao").getUserBeers(req.params.id, (status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
+// Get the image for a user
+router.get("/:id/image", (req, res) => {
+  req.app.get("usersdao").getUserImage(req.params.id, (status, data) => {
     res.status(status);
     res.json(data);
   });

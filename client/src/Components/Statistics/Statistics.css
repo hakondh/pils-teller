@@ -1,15 +1,16 @@
-@media (max-width: 768px) {
-  .chart-div {
-    width: 1000px;
-    height: 1000px;
-  }
-}
-
 .chart-div {
   margin-top: 20px;
   width: 400px;
   height: 300px;
   /* border: 1px solid white; */
+}
+
+@media (max-width: 768px) {
+  .chart-div {
+    width: 370px;
+    height: 300px;
+    /* border: 1px solid white; */
+  }
 }
 
 .chart-title {

@@ -58,6 +58,7 @@ function Statistics(props) {
         data={data}
         options={{
           responsive: true,
+          maintainAspectRatio: true,
           legend: {
             labels: {
               fontColor: "white",

@@ -7,7 +7,7 @@ module.exports = class BeersDao extends Dao {
 
   getWeeklyDrunkard(callback) {
     super.query(
-      "SELECT sum(amount) AS count, NAME " +
+      "SELECT sum(amount) AS count, name, image " +
         "FROM beers " +
         "INNER JOIN users ON beers.user_id=users.id " +
         "WHERE YEARWEEK(beers.reg_date, 1) = YEARWEEK(NOW(), 1) " +
