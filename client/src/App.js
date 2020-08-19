@@ -8,6 +8,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import Profile from "./Components/Profile/Profile";
 import BeerRegistration from "./Components/BeerRegistration/BeerRegistration";
 import Statistics from "./Components/Statistics/Statistics";
+import UserSettings from "./Components/UserSettings/UserSettings";
 import { UserProvider } from "./UserContext";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/profil" component={Profile} />
           <Route path="/registrer-pils" component={BeerRegistration} />
           <Route path="/statistikk" component={Statistics}></Route>
+          <Route path="/innstillinger" component={UserSettings}></Route>
         </Switch>
       </BrowserRouter>
     </div>

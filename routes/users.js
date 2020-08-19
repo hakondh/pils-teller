@@ -21,10 +21,10 @@ router.get("/:name", (req, res) => {
 });
 
 //Put an image
-router.put("/:name/image", upload.single("image"), (req, res) => {
+router.put("/:id/image", upload.single("image"), (req, res) => {
   req.app
     .get("usersdao")
-    .putImage([req.file.filename, req.params.name], (status, data) => {
+    .putImage([req.file.filename, req.params.id], (status, data) => {
       res.status(status);
       res.json(data);
     });

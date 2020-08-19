@@ -19,11 +19,16 @@ function UserRegistration(props) {
         password: password,
       })
       .then((res) => {
-        fileUploadHandler();
+        console.log(res);
+        if (selectedFile) {
+          fileUploadHandler(res.data.insertId);
+        }
+
         history.push("/logg-inn");
         window.location.reload();
       })
       .catch((err) => {
+        console.log(err);
         setError(err.response.data);
       });
   };
@@ -33,11 +38,11 @@ function UserRegistration(props) {
     setSelectedFile(e.target.files[0]);
   };
 
-  const fileUploadHandler = () => {
+  const fileUploadHandler = (id) => {
     const fd = new FormData();
     fd.append("image", selectedFile, selectedFile.name);
     axios
-      .put("/users/" + name + "/image", fd, {
+      .put("/users/" + id + "/image", fd, {
         onDownloadProgress: (progressEvent) => {
           console.log(
             "Upload progress " +

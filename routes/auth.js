@@ -13,7 +13,7 @@ router.post("/register", (req, res) => {
       }
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       authdao.postUser([req.body.name, hashedPassword], (status, data) => {
-        res.status(200).send("Created user.");
+        res.status(200).send(data);
       });
     });
   } catch (err) {
