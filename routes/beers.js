@@ -27,7 +27,6 @@ router.get("/beer-sum-per-user", (req, res) => {
 
 /* Post beers */
 router.post("/", (req, res) => {
-  console.log(req.body.amount);
   req.app
     .get("beersdao")
     .postBeers([req.body.amount, req.body.user_id], (status, data) => {

@@ -36,13 +36,11 @@ function BeerOverTime(props) {
     axios
       .get("/beers/beer-over-time")
       .then((res) => {
-        console.log(res.data);
         let beerSumsArr = [];
         let datesArr = [];
         res.data.forEach((e) => {
           beerSumsArr.push(e.sum);
           datesArr.push(Date.parse(e.date));
-          console.log(Date.parse(e.date));
         });
         setBeerSums(beerSumsArr);
         setDates(datesArr);

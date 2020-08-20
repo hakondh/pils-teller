@@ -58,7 +58,6 @@ router.post("/login", (req, res) => {
 
 router.post("/check-login-state", (req, res) => {
   const token = req.get("auth-token");
-  console.log(token);
   res.status(200).send("ok");
 });
 

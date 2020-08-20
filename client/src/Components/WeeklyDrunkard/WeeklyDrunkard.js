@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function WeeklyDrunkard(props) {
   const [drunkards, setDrunkards] = useState([]);
   const [titleText, setTitleText] = useState("Ukens topp-drikker");
-  const [imagePaths, setImagePaths] = useState([]);
 
   useEffect(() => {
     axios
@@ -16,21 +15,6 @@ function WeeklyDrunkard(props) {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  /* const getImages = (drunkards) => {
-    let imagePathsArr = [];
-    drunkards.forEach((drunkard, i) => {
-      let path = "/images/";
-      axios
-        .get("/users/" + drunkard.id + "/image")
-        .then((res) => {
-          imagePathsArr.push(path + res.data[0].image);
-        })
-        .catch((err) => console.log(err));
-    });
-    console.log(imagePathsArr);
-    setImagePaths(imagePathsArr);
-  }; */
 
   return (
     <div>

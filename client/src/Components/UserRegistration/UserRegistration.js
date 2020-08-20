@@ -19,7 +19,6 @@ function UserRegistration(props) {
         password: password,
       })
       .then((res) => {
-        console.log(res);
         if (selectedFile) {
           fileUploadHandler(res.data.insertId);
         }
@@ -50,9 +49,6 @@ function UserRegistration(props) {
               "%"
           );
         },
-      })
-      .then((res) => {
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
