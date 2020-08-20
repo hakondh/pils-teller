@@ -47,6 +47,7 @@ router.post("/login", (req, res) => {
         name: req.body.name,
         accessToken: token,
         image: user.image,
+        reg_date: user.reg_date,
       });
     });
   } catch (err) {

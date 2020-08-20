@@ -4,6 +4,7 @@ import axios from "axios";
 function Profile(props) {
   const user = JSON.parse(localStorage.getItem("user"));
   const [consumedBeers, setConsumedBeers] = useState(null);
+  const [averageBeers, setAverageBeers] = useState(null);
 
   useEffect(() => {
     axios
@@ -13,6 +14,22 @@ function Profile(props) {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    getAverage();
+  }, [consumedBeers]);
+
+  const getAverage = () => {
+    const regDate = Date.parse(
+      JSON.parse(localStorage.getItem("user")).reg_date
+    );
+    const todayDate = Date.parse(new Date());
+    const timeDiff = todayDate - regDate;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    let avg = Math.round((consumedBeers / days) * 100) / 100;
+    avg = (avg + "").replace(".", ",");
+    setAverageBeers(avg);
+  };
 
   return (
     <div className="container">
@@ -28,6 +45,11 @@ function Profile(props) {
       <p>
         Antall pils konsumert: <span>{consumedBeers}</span>
       </p>
+      {averageBeers && averageBeers !== Infinity && (
+        <p>
+          Det er i gjennomsnitt <span>{averageBeers}</span> pils per dag.
+        </p>
+      )}
     </div>
   );
 }
