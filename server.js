@@ -3,28 +3,16 @@ const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const port = 5000;
-// Maybe add body-parser? req.body has worked so far...
-
-app.use(express.json());
-app.use(cors());
-// Allow access to XMLHttpRequest (fix block by CORS)
-// Commented out, as we can use the cors package insted
-/* app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5000"); // update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS");
-  next();
-}); */
-
 dotenv.config(); // Access environment variables
+const path = require("path");
+const port = process.env.PORT;
 
-// Setting up the connection pool
+app.use(express.json()); // Body parser
+app.use(cors()); // Fixes CORS block
+
+// Setting up the connection pool for database
 let pool = mysql.createPool({
-  connectionLimit: 10,
+  connectionLimit: 30,
   host: process.env.DB_HOST,
   user: "root",
   password: process.env.DB_PASSWORD,
@@ -32,7 +20,7 @@ let pool = mysql.createPool({
   debug: false,
 });
 
-// Make folder publicly accessible so that the front-end can access the profile pictures
+// Make the images-folder publicly accessible so that the front-end can access the profile pictures
 app.use("/images", express.static("images"));
 
 /* Auth */
@@ -55,5 +43,16 @@ app.set("beersdao", new BeersDao(pool));
 
 const imagesRoute = require("./routes/images");
 app.use("/images", imagesRoute);
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  console.log("We are in production...");
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(port, () => console.log("Server started on port " + port));
