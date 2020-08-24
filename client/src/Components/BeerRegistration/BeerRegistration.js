@@ -8,6 +8,7 @@ function BeerRegistration(props) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     axios
       .post("/beers", {
         amount: beers,
