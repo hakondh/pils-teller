@@ -36,7 +36,6 @@ module.exports = class BeersDao extends Dao {
   }
 
   postBeers(beers, callback) {
-    console.log("Posting beers...");
     super.query(
       "INSERT INTO beers(amount, user_id) VALUES(?, ?)",
       beers,
@@ -45,7 +44,6 @@ module.exports = class BeersDao extends Dao {
   }
 
   getBeerOverTime(callback) {
-    console.log("Getting beers over time...");
     super.query(
       "SELECT SUM(amount) AS sum, CAST(reg_date AS DATE) AS date " +
         "FROM beers " +

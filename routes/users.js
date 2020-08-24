@@ -7,6 +7,7 @@ const verify = require("../middleware/verifyToken");
 
 // Get all users
 router.get("/", verify, (req, res) => {
+  console.log("GET /users");
   req.app.get("usersdao").getUsers((status, data) => {
     res.status(status);
     res.json(data);
@@ -15,6 +16,7 @@ router.get("/", verify, (req, res) => {
 
 //Get a user
 router.get("/:name", (req, res) => {
+  console.log("GET /users/:name");
   req.app.get("usersdao").getUser(req.params.name, (status, data) => {
     res.status(status);
     res.json(data);
@@ -23,6 +25,7 @@ router.get("/:name", (req, res) => {
 
 //Put an image
 router.put("/:id/image", upload.single("image"), (req, res) => {
+  console.log("PUT /users/:id/image");
   req.app
     .get("usersdao")
     .putImage([req.file.filename, req.params.id], (status, data) => {
@@ -32,6 +35,7 @@ router.put("/:id/image", upload.single("image"), (req, res) => {
 
 // Get sum of beers for a user
 router.get("/:id/beers", (req, res) => {
+  console.log("GET /users/:id/beers");
   req.app.get("usersdao").getUserBeers(req.params.id, (status, data) => {
     res.status(status);
     res.json(data);
@@ -40,6 +44,7 @@ router.get("/:id/beers", (req, res) => {
 
 // Get the image for a user
 router.get("/:id/image", (req, res) => {
+  console.log("GET /users/:id/image");
   req.app.get("usersdao").getUserImage(req.params.id, (status, data) => {
     res.status(status);
     res.json(data);
