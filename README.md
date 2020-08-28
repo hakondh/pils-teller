@@ -19,4 +19,5 @@ The database is created with *mysql*.
 - Create the minified bundle: `npm run build`
 - Go back to the root folder: `cd ..`
 - Run the server: `sudo node server.js`
+
 Done!
