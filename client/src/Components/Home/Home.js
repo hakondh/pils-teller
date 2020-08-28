@@ -24,7 +24,7 @@ function Home(props) {
     <section id="main">
       <div className="container">
         <h1 className="header">{beers} pils</h1>
-        <p className="text">...har blitt drukket siden 13/8/2020.</p>
+        <p className="text">...har blitt drukket siden 27/8/2020.</p>
         <br />
         <WeeklyDrunkard></WeeklyDrunkard>
       </div>
