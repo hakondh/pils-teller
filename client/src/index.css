@@ -47,7 +47,12 @@ body {
 header {
   background-color: #171716;
   min-height: 10px;
+  overflow: hidden;
   /* border-bottom: #dcab2d 1px solid; */
+}
+
+header #logo-box {
+  display: inline;
 }
 
 header a {
@@ -62,7 +67,7 @@ header ul {
 
 header li {
   display: inline;
-  padding: 0 10px 0 10px;
+  padding: 0 15px 0 0px;
 }
 
 header nav {
@@ -73,10 +78,6 @@ header nav {
 header #logo {
   margin-top: 4px;
   margin-left: 4px;
-}
-
-header #logo-box {
-  /* white-space: nowrap; */
 }
 
 header #alpha-tag {
