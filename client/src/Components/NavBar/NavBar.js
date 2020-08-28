@@ -18,12 +18,18 @@ function NavBar(props) {
   return (
     <header>
       <div>
-        {/* <div id="logo-box"> */}
-        <Link to="/">
-          <img id="logo" src={logo} height="40px" width="auto" alt="pils"></img>
-        </Link>
-        <p id="alpha-tag">alfa</p>
-        {/* </div> */}
+        <div id="logo-box">
+          <Link to="/">
+            <img
+              id="logo"
+              src={logo}
+              height="40px"
+              width="auto"
+              alt="pils"
+            ></img>
+          </Link>
+          <p id="alpha-tag">alfa</p>
+        </div>
 
         <nav>
           {user ? (
@@ -31,6 +37,9 @@ function NavBar(props) {
               <ul>
                 <li>
                   <Link to="/registrer-pils">Registrer pils</Link>
+                </li>
+                <li>
+                  <Link to="/pilserne">Pilserne</Link>
                 </li>
                 <li>
                   <Link to="/statistikk">Statistikk</Link>
@@ -49,6 +58,9 @@ function NavBar(props) {
             </div>
           ) : (
             <ul>
+              <li>
+                <Link to="/pilserne">Pilserne</Link>
+              </li>
               <li>
                 <Link to="/statistikk">Statistikk</Link>
               </li>

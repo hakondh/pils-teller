@@ -1,0 +1,34 @@
+.drinker-container {
+  width: 600px;
+  height: 600px;
+  margin: 10px;
+  border: 1px solid #dcab2d;
+  background-color: black;
+  color: #dcab2d;
+  float: left;
+  padding-left: 10px;
+}
+
+#name-title {
+  color: #dcab2d;
+  font-size: 50px;
+  margin: 0px;
+  padding: 0px;
+  line-height: 50px;
+}
+
+.drinker-image {
+  width: auto;
+  height: 375px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .drinker-container {
+    width: 90%;
+    height: auto;
+    border: 1px solid #dcab2d;
+    background-color: black;
+    color: #dcab2d;
+  }
+}

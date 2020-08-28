@@ -6,7 +6,7 @@ const fs = require("fs");
 const verify = require("../middleware/verifyToken");
 
 // Get all users
-router.get("/", verify, (req, res) => {
+router.get("/", (req, res) => {
   console.log("GET /users");
   req.app.get("usersdao").getUsers((status, data) => {
     res.status(status);

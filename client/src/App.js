@@ -9,6 +9,7 @@ import Profile from "./Components/Profile/Profile";
 import BeerRegistration from "./Components/BeerRegistration/BeerRegistration";
 import Statistics from "./Components/Statistics/Statistics";
 import UserSettings from "./Components/UserSettings/UserSettings";
+import Drinkers from "./Components/Drinkers/Drinkers";
 import { UserProvider } from "./UserContext";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/registrer-pils" component={BeerRegistration} />
           <Route path="/statistikk" component={Statistics}></Route>
           <Route path="/innstillinger" component={UserSettings}></Route>
+          <Route path="/pilserne" component={Drinkers}></Route>
         </Switch>
       </BrowserRouter>
     </div>
