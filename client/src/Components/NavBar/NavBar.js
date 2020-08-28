@@ -33,6 +33,9 @@ function NavBar(props) {
                   <Link to="/registrer-pils">Registrer pils</Link>
                 </li>
                 <li>
+                  <Link to="/pilserne">Pilserne</Link>
+                </li>
+                <li>
                   <Link to="/statistikk">Statistikk</Link>
                 </li>
                 <li className="dropdown">
@@ -49,6 +52,9 @@ function NavBar(props) {
             </div>
           ) : (
             <ul>
+              <li>
+                <Link to="/pilserne">Pilserne</Link>
+              </li>
               <li>
                 <Link to="/statistikk">Statistikk</Link>
               </li>
