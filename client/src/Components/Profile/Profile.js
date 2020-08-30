@@ -28,6 +28,7 @@ function Profile(props) {
     const todayDate = Date.parse(new Date());
     const timeDiff = todayDate - regDate;
     const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    if (days <= 1) return setAverageBeers(consumedBeers);
     let avg = Math.round((consumedBeers / days) * 100) / 100;
     avg = (avg + "").replace(".", ",");
     setAverageBeers(avg);
