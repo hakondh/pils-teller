@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
-import "./BeerOverTime.css";
 
 function BeerOverTime(props) {
   const [beerSums, setBeerSums] = useState([]);
@@ -52,7 +51,6 @@ function BeerOverTime(props) {
   return (
     <div className="chart-div">
       <h2 className="chart-title">Pils konsumert over tid</h2>
-      <h3 id="mo">test</h3>
       <Line
         data={data}
         options={{
