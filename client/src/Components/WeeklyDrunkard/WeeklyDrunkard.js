@@ -3,14 +3,14 @@ import axios from "axios";
 
 function WeeklyDrunkard(props) {
   const [drunkards, setDrunkards] = useState([]);
-  const [titleText, setTitleText] = useState("Ukens topp-drikker");
+  const [titleText, setTitleText] = useState("Ukens dranker");
 
   useEffect(() => {
     axios
       .get("/beers/weekly-drunkard")
       .then((res) => {
         setDrunkards(res.data);
-        if (res.data.length > 1) setTitleText("Ukens topp-drikkere");
+        if (res.data.length > 1) setTitleText("Ukens drankere");
         /* getImages(res.data); */
       })
       .catch((err) => console.log(err));
