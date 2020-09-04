@@ -29,7 +29,8 @@ module.exports = class BeersDao extends Dao {
         "FROM beers " +
         "INNER JOIN users ON beers.user_id=users.id " +
         "GROUP BY user_id " +
-        "ORDER BY count DESC;",
+        "ORDER BY count DESC " +
+        "LIMIT 10;",
       [],
       callback
     );

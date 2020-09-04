@@ -12,20 +12,30 @@ function TotalBeerSumPerUser(props) {
       {
         data: beerSums,
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
+          "rgba(219,112,147, 0.2)",
+          "rgba(255,255,0, 0.2)",
           "rgba(75, 192, 192, 0.2)",
           "rgba(153, 102, 255, 0.2)",
+          "rgba(250, 250, 210, 0.2)",
           "rgba(255, 159, 64, 0.2)",
+          "rgba(255,0,0, 0.2)",
+          "rgba(139, 105, 105, 0.2)",
+          "rgba(0,128,0, 0.2)",
+          "rgba(131, 139, 131, 0.2)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
           "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
+          "rgba(219,112,147, 1)",
+          "rgba(255,255,0, 1)",
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
+          "rgba(250, 250, 210, 1)",
           "rgba(255, 159, 64, 1)",
+          "rgba(255,0,0, 1)",
+          "rgba(139, 105, 105, 1)",
+          "rgba(0,128,0, 1)",
+          "rgba(131, 139, 131, 1)",
         ],
         borderWidth: 1,
       },
@@ -35,13 +45,30 @@ function TotalBeerSumPerUser(props) {
   useEffect(() => {
     axios
       .get("/beers/beer-sum-per-user")
-      .then((res) => {
-        let beerSumArr = [];
+      .then(async (res) => {
+        var beerSumArr = [];
         let nameArr = [];
         res.data.forEach((e) => {
           beerSumArr.push(e.count);
           nameArr.push(e.NAME);
         });
+        await axios
+          .get("/beers")
+          .then((res) => {
+            var count = 0;
+            res.data.forEach((b) => {
+              count += b.amount;
+            });
+            const reducer = (accumulator, currentValue) =>
+              parseInt(accumulator) + parseInt(currentValue);
+            var topCount = beerSumArr.reduce(reducer);
+            if (count > topCount) {
+              console.log("TRUE!");
+              beerSumArr.push(count - topCount);
+              nameArr.push("Andre");
+            }
+          })
+          .catch((err) => console.log(err));
         setBeerSums(beerSumArr);
         setNames(nameArr);
       })
