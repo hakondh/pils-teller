@@ -36,6 +36,21 @@ module.exports = class BeersDao extends Dao {
     );
   }
 
+  getGreatestContributor(callback) {
+    super.query(
+      "SELECT sum(amount) AS count, name, image FROM beers " +
+        "INNER JOIN users ON beers.user_id=users.id " +
+        "GROUP BY user_id " +
+        "HAVING count = ( " +
+        "SELECT MAX(c) FROM ( " +
+        "SELECT SUM(amount) AS c from beers " +
+        "GROUP BY user_id) AS t) " +
+        "ORDER BY count DESC;",
+      [],
+      callback
+    );
+  }
+
   postBeers(regInfo, callback) {
     super.query(
       "INSERT INTO beers(amount, reg_date, user_id) VALUES(?, ?, ?)",

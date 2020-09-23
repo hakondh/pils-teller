@@ -8,6 +8,23 @@
   background-color: black;
 }
 
+.gc-image {
+  width: auto;
+  height: 90%;
+  border: 1px solid #dcab2d;
+  margin: auto;
+}
+
+.gc-div {
+  height: 200px;
+  display: flex;
+  border: 1px solid red;
+}
+
+p {
+  color: #dcab2d;
+}
+
 @media (max-width: 768px) {
   .chart-div {
     width: 99.4%;

@@ -20,6 +20,15 @@ router.get("/weekly-drunkard", (req, res) => {
   });
 });
 
+/* Get the greatest contributor */
+router.get("/greatest-contributor", (req, res) => {
+  console.log("GET /greatest-contributor");
+  req.app.get("beersdao").getGreatestContributor((status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
 router.get("/beer-sum-per-user", (req, res) => {
   console.log("GET /beer-sum-per-user");
   req.app.get("beersdao").getBeerSumPerUser((status, data) => {
