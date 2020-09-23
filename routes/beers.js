@@ -33,10 +33,13 @@ router.post("/", (req, res) => {
   console.log("POST /beers");
   req.app
     .get("beersdao")
-    .postBeers([req.body.amount, req.body.user_id], (status, data) => {
-      res.status(status);
-      res.json(data);
-    });
+    .postBeers(
+      [req.body.amount, req.body.reg_date, req.body.user_id],
+      (status, data) => {
+        res.status(status);
+        res.json(data);
+      }
+    );
 });
 
 router.get("/beer-over-time", (req, res) => {

@@ -27,6 +27,8 @@ function Home(props) {
         <p className="text">...har blitt drukket siden 27/8/2020.</p>
         <br />
         <WeeklyDrunkard></WeeklyDrunkard>
+        <br />
+        <p>NYHET: Nå mulig å registrere pils fra fortiden</p>
       </div>
     </section>
   );
