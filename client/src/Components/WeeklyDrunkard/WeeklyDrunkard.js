@@ -34,19 +34,32 @@ function WeeklyDrunkard(props) {
           </div>
         )}
         <p>
-          {drunkards.length > 0
-            ? drunkards.map((drunkard, i) => (
-                <span key={drunkard.name}>
-                  {drunkard.name}
-                  {i < drunkards.length - 1
-                    ? [i === drunkards.length - 2 ? " og " : ", "]
-                    : ", med " +
-                      drunkard.count +
-                      " pils" +
-                      [drunkards.length > 1 ? " hver." : "."]}
-                </span>
-              ))
-            : "Hva i alle dager. Det er ikke registrert en eneste pils denne uken. "}
+          {drunkards.length > 0 ? (
+            drunkards.map((drunkard, i) => (
+              <span key={drunkard.name}>
+                {drunkard.name}
+                {i < drunkards.length - 1
+                  ? [i === drunkards.length - 2 ? " og " : ", "]
+                  : ", med " +
+                    drunkard.count +
+                    " pils" +
+                    [drunkards.length > 1 ? " hver." : "."]}
+              </span>
+            ))
+          ) : (
+            <div>
+              <img
+                id="beer-gif"
+                class="decorated-gif"
+                src="https://media1.tenor.com/images/23c5e7ba7a670ed6f95346231a0f317e/tenor.gif?itemid=14267244"
+                alt="pils-gif"
+              />
+              <span>
+                Hva i alle dager. Det er ikke registrert en eneste pils denne
+                uken.{" "}
+              </span>
+            </div>
+          )}
         </p>
       </div>
     </div>

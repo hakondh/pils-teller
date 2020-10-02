@@ -6,6 +6,22 @@ import WeeklyDrunkard from "../WeeklyDrunkard/WeeklyDrunkard";
 
 function Home(props) {
   const [beers, setBeers] = useState(0);
+  const gifs = [
+    "https://media.giphy.com/media/e6TR9n00dL3JS/giphy.gif",
+    "https://media.giphy.com/media/h8NdYZJGH1ZRe/giphy.gif",
+    "https://media.giphy.com/media/7bx7ZHokGnofm/giphy.gif",
+    "https://media.giphy.com/media/l0HlwREiJ3HA3QTo4/giphy.gif",
+    "https://media.giphy.com/media/26tP21xUQnOCIIoFi/giphy.gif",
+    "https://media.giphy.com/media/1esoXMqqOjYGm5Bdqt/giphy.gif",
+    "https://media.giphy.com/media/ixCowc31ZeKuIHuhFe/giphy.gif",
+    "https://media.giphy.com/media/3ehKQ7ZELVUhq/giphy.gif",
+    "https://media.giphy.com/media/DmzUp9lX7lHlm/giphy.gif",
+    "https://media.giphy.com/media/Tbj1X2js8WPOE/giphy.gif",
+    "https://media.giphy.com/media/6b8D22vANc2mPzs178/giphy.gif",
+  ];
+  const [gif, setGif] = useState(
+    gifs[Math.floor(Math.random() * (gifs.length - 1))]
+  );
 
   useEffect(() => {
     axios
@@ -25,10 +41,7 @@ function Home(props) {
       <div className="container">
         <h1 className="header">{beers} pils</h1>
         <p className="text">...har blitt drukket siden 27/8/2020.</p>
-        <br />
         <WeeklyDrunkard></WeeklyDrunkard>
-        <br />
-        <p>NYHET: Nå mulig å registrere pils fra fortiden</p>
       </div>
     </section>
   );
