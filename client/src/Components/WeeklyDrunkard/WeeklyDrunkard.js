@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import "./WeeklyDrunkard.css";
 function WeeklyDrunkard(props) {
   const [drunkards, setDrunkards] = useState([]);
   const [titleText, setTitleText] = useState("Ukens dranker");

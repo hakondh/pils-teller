@@ -39,8 +39,9 @@ function Home(props) {
   return (
     <section id="main">
       <div className="container">
-        <h1 className="header">{beers} pils</h1>
+        <h1 className="header">400 pils</h1>
         <p className="text">...har blitt drukket siden 27/8/2020.</p>
+        <br />
         <WeeklyDrunkard></WeeklyDrunkard>
       </div>
     </section>
