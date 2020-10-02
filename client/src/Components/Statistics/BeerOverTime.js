@@ -36,14 +36,31 @@ function BeerOverTime(props) {
     axios
       .get("/beers/beer-over-time")
       .then((res) => {
-        let beerSumsArr = [];
-        let datesArr = [];
+        const beerSumsArr = [];
+        const datesArr = [];
         res.data.forEach((e) => {
           beerSumsArr.push(e.sum);
           datesArr.push(Date.parse(e.date));
         });
-        setBeerSums(beerSumsArr);
-        setDates(datesArr);
+        let firstDate = new Date(datesArr[0]);
+        let lastDate = new Date(datesArr[datesArr.length - 1]);
+        let filledBeerSumsArr = [];
+        let filledDatesArr = [];
+        console.log(`going from ${firstDate} to ${lastDate}`);
+        for (var d = firstDate; d <= lastDate; d.setDate(d.getDate() + 1)) {
+          let timeVal = d.getTime();
+          filledDatesArr.push(timeVal);
+          if (datesArr.includes(timeVal)) {
+            filledBeerSumsArr.push(beerSumsArr[datesArr.indexOf(timeVal)]);
+          } else {
+            console.log("takk for 0.");
+            filledBeerSumsArr.push(0);
+          }
+        }
+        console.log(filledBeerSumsArr);
+        console.log(filledDatesArr);
+        setBeerSums(filledBeerSumsArr);
+        setDates(filledDatesArr);
       })
       .catch((err) => console.log(err));
   }, []);
