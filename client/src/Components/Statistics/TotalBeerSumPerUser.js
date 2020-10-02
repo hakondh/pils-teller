@@ -5,6 +5,7 @@ import axios from "axios";
 function TotalBeerSumPerUser(props) {
   const [beerSums, setBeerSums] = useState([]);
   const [names, setNames] = useState([]);
+  const [chartHeight, setChartHeight] = useState(0);
 
   const data = {
     labels: names,
@@ -81,6 +82,7 @@ function TotalBeerSumPerUser(props) {
       <Doughnut
         className="doughnut"
         data={data}
+        height={window.matchMedia("(max-width: 768px)").matches ? 300 : null}
         options={{
           responsive: true,
           maintainAspectRatio: true,

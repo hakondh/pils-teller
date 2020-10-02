@@ -46,19 +46,15 @@ function BeerOverTime(props) {
         let lastDate = new Date(datesArr[datesArr.length - 1]);
         let filledBeerSumsArr = [];
         let filledDatesArr = [];
-        console.log(`going from ${firstDate} to ${lastDate}`);
         for (var d = firstDate; d <= lastDate; d.setDate(d.getDate() + 1)) {
           let timeVal = d.getTime();
           filledDatesArr.push(timeVal);
           if (datesArr.includes(timeVal)) {
             filledBeerSumsArr.push(beerSumsArr[datesArr.indexOf(timeVal)]);
           } else {
-            console.log("takk for 0.");
             filledBeerSumsArr.push(0);
           }
         }
-        console.log(filledBeerSumsArr);
-        console.log(filledDatesArr);
         setBeerSums(filledBeerSumsArr);
         setDates(filledDatesArr);
       })
