@@ -26,7 +26,7 @@ const pool = new Pool({
   database: process.env.DB_DATABASE,
   host: process.env.DB_URL,
   port: process.env.DB_PORT,
-  ssl: { rejectUnauthorized: false }
+  ssl: true
 })
 //app.set("pool", pool); // Set pool for use on routes
 
