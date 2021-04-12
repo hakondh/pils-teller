@@ -21,11 +21,12 @@ app.use(cors()); // Fixes CORS block
   debug: false,
 }); */
 const pool = new Pool({
-  user: process.env.DB_USER,
+  /* user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   host: process.env.DB_URL,
-  port: process.env.DB_PORT,
+  port: process.env.DB_PORT, */
+  connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false } 
 })
 //app.set("pool", pool); // Set pool for use on routes
