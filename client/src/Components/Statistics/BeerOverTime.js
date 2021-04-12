@@ -38,7 +38,7 @@ function BeerOverTime(props) {
       .then((res) => {
         const beerSumsArr = [];
         const datesArr = [];
-        res.data.forEach((e) => {
+        res.data.rows.forEach((e) => {
           beerSumsArr.push(e.sum);
           datesArr.push(Date.parse(e.date));
         });

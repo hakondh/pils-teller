@@ -49,15 +49,15 @@ function TotalBeerSumPerUser(props) {
       .then(async (res) => {
         var beerSumArr = [];
         let nameArr = [];
-        res.data.forEach((e) => {
+        res.data.rows.forEach((e) => {
           beerSumArr.push(e.count);
-          nameArr.push(e.NAME);
+          nameArr.push(e.name);
         });
         await axios
           .get("/beers")
           .then((res) => {
             var count = 0;
-            res.data.forEach((b) => {
+            res.data.rows.forEach((b) => {
               count += b.amount;
             });
             const reducer = (accumulator, currentValue) =>

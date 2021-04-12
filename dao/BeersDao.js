@@ -30,7 +30,7 @@ module.exports = class BeersDao extends Dao {
       "SELECT sum(amount) AS count, NAME " +
         "FROM beers " +
         "INNER JOIN users ON beers.user_id=users.id " +
-        "GROUP BY user_id " +
+        "GROUP BY user_id, name, image " +
         "ORDER BY count DESC " +
         "LIMIT 10;",
       [],
@@ -55,7 +55,7 @@ module.exports = class BeersDao extends Dao {
 
   postBeers(regInfo, callback) {
     super.query(
-      "INSERT INTO beers(amount, reg_date, user_id) VALUES(?, ?, ?)",
+      "INSERT INTO beers(amount, reg_date, user_id) VALUES($1, $2, $3)",
       regInfo,
       callback
     );

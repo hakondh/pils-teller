@@ -12,7 +12,7 @@ function Drinker(props) {
     axios
       .get("/users/" + props.user.id + "/beers")
       .then((res) => {
-        const fetchedSum = res.data[0].sum;
+        const fetchedSum = res.data.rows[0].sum;
         if (fetchedSum) setConsumedBeers(fetchedSum);
       })
       .catch((err) => console.log(err));

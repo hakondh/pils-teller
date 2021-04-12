@@ -10,8 +10,8 @@ function Drinkers(props) {
     axios
       .get("/users")
       .then((res) => {
-        console.log(res.data);
-        setUsers(res.data);
+        console.log(res.data.rows);
+        setUsers(res.data.rows);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -11,8 +11,8 @@ function GreatestContributors(props) {
     axios
       .get("/beers/greatest-contributor")
       .then((res) => {
-        setGreatestContributor(res.data);
-        if (res.data.length > 1)
+        setGreatestContributor(res.data.rows);
+        if (res.data.rows.length > 1)
           setTitleText("Pils-tellers største bidragsytere");
       })
       .catch((err) => console.log(err));
