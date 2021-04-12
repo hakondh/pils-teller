@@ -27,9 +27,10 @@ function Home(props) {
     axios
       .get("/beers")
       .then((res) => {
+        console.log(res.data.rows)
         var count = 0;
-        res.data.forEach((b) => {
-          count += b.amount;
+        res.data.rows.forEach((beer) => {
+          count += beer.amount;
         });
         setBeers(count);
       })
@@ -39,7 +40,7 @@ function Home(props) {
   return (
     <section id="main">
       <div className="container">
-        <h1 className="header">400 pils</h1>
+        <h1 className="header">{beers} pils</h1>
         <p className="text">...har blitt drukket siden 27/8/2020.</p>
         <br />
         <WeeklyDrunkard></WeeklyDrunkard>

@@ -9,7 +9,7 @@ function WeeklyDrunkard(props) {
     axios
       .get("/beers/weekly-drunkard")
       .then((res) => {
-        setDrunkards(res.data);
+        setDrunkards(res.data.rows);
         if (res.data.length > 1) setTitleText("Ukens drankere");
         /* getImages(res.data); */
       })

@@ -4,9 +4,9 @@ module.exports = class Dao {
     this.pool = pool;
   }
 
-  query(sql, params, callback) {
+  async query(sql, params, callback) {
     // Get a connection from the pool
-    this.pool.getConnection((err, connection) => {
+    /* this.pool.getConnection((err, connection) => {
       console.log("dao: connected to database");
       // If there are any errors getting a connection
       if (err) {
@@ -30,6 +30,14 @@ module.exports = class Dao {
           }
         });
       }
-    });
+    }); */
+    try {
+      const data = await this.pool.query(sql, params)
+      callback(200, data)
+    }
+    catch(err) {
+      console.log(err)
+      callback(500, {error: "error querying"})
+    }
   }
 };

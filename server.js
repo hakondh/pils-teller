@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const mysql = require("mysql2");
+//const mysql = require("mysql2");
+const Pool = require("pg").Pool;
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config(); // Access environment variables
@@ -11,14 +12,23 @@ app.use(express.json()); // Body parser
 app.use(cors()); // Fixes CORS block
 
 // Setting up the connection pool for database
-let pool = mysql.createPool({
+/* let pool = mysql.createPool({
   connectionLimit: 30,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: "pilstellerdb",
   debug: false,
-});
+}); */
+const pool = new Pool({
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  host: process.env.DATABASE_URL,
+  port: process.env.DB_PORT,
+  ssl: { rejectUnauthorized: false }
+})
+//app.set("pool", pool); // Set pool for use on routes
 
 // Make the images-folder publicly accessible so that the front-end can access the profile pictures
 app.use("/images", express.static("images"));

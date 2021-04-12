@@ -10,14 +10,16 @@ module.exports = class BeersDao extends Dao {
       "SELECT sum(amount) AS count, name, image " +
         "FROM beers " +
         "INNER JOIN users ON beers.user_id=users.id " +
-        "WHERE YEARWEEK(beers.reg_date, 1) = YEARWEEK(NOW(), 1) " +
-        "GROUP BY user_id " +
-        "HAVING count = (" +
-        "SELECT MAX(c) FROM (" +
+        "WHERE date_part('year', beers.reg_date) = date_part('year', CURRENT_DATE) " +
+        "GROUP BY user_id, name, image " +
+        "HAVING " +
+        "sum(amount) = " +
+        "(SELECT MAX(c) FROM ( " +
         "SELECT SUM(amount) AS c from beers " +
-        "WHERE YEARWEEK(beers.reg_date, 1) = YEARWEEK(NOW(), 1) " +
-        "GROUP BY user_id) AS t) " +
-        "ORDER BY count DESC;",
+        "WHERE date_part('year', beers.reg_date) = date_part('year', CURRENT_DATE) " +
+        "GROUP BY user_id) " +
+        "AS t) " +
+        "ORDER BY count DESC; ",
       [],
       callback
     );
