@@ -6,8 +6,9 @@ import { routes } from "../../Constants/routes";
 import logo from "./iconfinder_Beer_Mug_drink_3017884.png";
 
 function NavBar() {
-  const token = true; //KeycloakAuthService.getToken();
+  const token = KeycloakAuthService.getToken();
   const [viewHamburger, setViewHamburger] = useState(false);
+  console.log(token)
 
   const logIn = () => {
     KeycloakAuthService.doLogin();
@@ -64,7 +65,7 @@ function NavBar() {
                 activeClassName={styles.Active}
                 className={styles.StyledLink}
               >
-                Profil
+                {KeycloakAuthService.getName()}
               </NavLink>
             </li>
             <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>

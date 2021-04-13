@@ -50,7 +50,7 @@ const getRoleDbId = () =>
   kc.idTokenParsed ? kc.idTokenParsed.roleDbId : "Invalid token";
 
 const getName = () =>
-  kc.idTokenParsed ? kc.tokenParsed.name : "Invalid token";
+  kc.idTokenParsed ? kc.tokenParsed.given_name : "Invalid token";
 
 const AuthService = {
   initKeycloak,
