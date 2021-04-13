@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import KeycloakAuthService from './Services/KeycloakAuthService'
+import HttpService from './Services/HttpService'
 
-ReactDOM.render(
+
+const renderApp = () => ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+KeycloakAuthService.initKeycloak(renderApp) // Initiate keycloak, then call renderApp in callback
+//HttpService.configure() // Configure axios to add tokens to requests
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

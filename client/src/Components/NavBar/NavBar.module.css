@@ -1,0 +1,117 @@
+.NavBar {
+  border-bottom: 2px solid var(--main-gold);
+  text-transform: uppercase;
+}
+
+.NavList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.NavElement {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.NavElement:hover {
+  background-color: var(--main-gold);
+}
+
+.NavElement:hover .StyledLink {
+  color: black;
+}
+
+.LogoElement {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Logo {
+  height: 7.5vh;
+  width: auto;
+}
+
+.StyledLink {
+  text-decoration: none;
+  color: var(--main-gold);
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: 1em;
+}
+
+.Active {
+  background-color: var(--main-gold);
+  color: black;
+}
+
+.Last {
+  margin-left: auto;
+  display: flex;
+  height: 100%;
+}
+
+.Last.NavElement {
+  padding-right: 0.75em;
+}
+
+/* Hamburger menu */
+.ToggleButton {
+  position: absolute;
+  top: 1.6rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.ToggleButton .Bar {
+  height: 3px;
+  width: 100%;
+  background-color: var(--main-gold);
+  border-radius: 10px;
+}
+
+@media (max-width: 566px) {
+  .ToggleButton {
+    display: flex;
+  }
+
+  .NavList {
+    flex-direction: column;
+  }
+
+  .NavElement {
+    width: 100%;
+    display: none;
+  }
+
+  .NavElement.active {
+    display: flex; /* Go from display none to flex */
+  }
+
+  .Last {
+    margin-left: 0; /* Remove auto, so that it does not go right */
+    flex-direction: column; /* Vertical */
+    cursor: pointer;
+    align-items: center;
+  }
+
+  .LogoElement {
+    width: 100%;
+  }
+
+  .Logo {
+    align-self: flex-start;
+  }
+}

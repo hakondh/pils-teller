@@ -1,132 +1,95 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import { NavLink } from "react-router-dom";
+import KeycloakAuthService from "../../Services/KeycloakAuthService";
+import styles from "./NavBar.module.css";
+import { routes } from "../../Constants/routes";
 import logo from "./iconfinder_Beer_Mug_drink_3017884.png";
-import { useHistory } from "react-router-dom";
-import UserContext from "../../UserContext";
-import { slide as Menu } from "react-burger-menu";
 
-function NavBar(props) {
-  /* const user = props.user; */
-  const user = useContext(UserContext);
-  const history = useHistory();
+function NavBar() {
+  const token = true; //KeycloakAuthService.getToken();
+  const [viewHamburger, setViewHamburger] = useState(false);
 
-  const logOut = () => {
-    localStorage.removeItem("user");
-    history.push("/");
-    window.location.reload();
+  const logIn = () => {
+    KeycloakAuthService.doLogin();
   };
 
-  if (window.matchMedia("(max-width: 768px)").matches) {
-    return (
-      <Menu>
-        <Link to="/">
-          <img id="logo" src={logo} height="40px" width="auto" alt="pils"></img>
-        </Link>
-        {user ? (
-          <div>
-            <ul>
-              <li>
-                <Link to="/registrer-pils">Registrer pils</Link>
-              </li>
-              <li>
-                <Link to="/pilserne">Pilserne</Link>
-              </li>
-              <li>
-                <Link to="/statistikk">Statistikk</Link>
-              </li>
-              <li className="dropdown">
-                <a href="javascript:void(0)" className="dropbtn">
-                  {user.name}
-                </a>
-                <div className="dropdown-content">
-                  <Link to="/profil">Profil</Link>
-                  <Link to="/innstillinger">Innstillinger</Link>
-                  <Link onClick={logOut}>Logg ut</Link>
-                </div>
-              </li>
-            </ul>
+  const logOut = () => {
+    KeycloakAuthService.doLogout();
+  };
+
+  return (
+    <nav className={styles.NavBar}>
+      <ul className={styles.NavList}>
+        <li className={styles.LogoElement}>
+          <NavLink to={routes.HOME} className={styles.First}>
+            <img className={styles.Logo} src={logo} alt="pils"></img>
+          </NavLink>
+        </li>
+        {token && (
+          <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+            <NavLink
+              to={routes.REGISTER_BEER}
+              activeClassName={styles.Active}
+              className={styles.StyledLink}
+            >
+              Registrer pils
+            </NavLink>
+          </li>
+        )}
+        <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+          <NavLink
+            to={routes.DRINKERS}
+            activeClassName={styles.Active}
+            className={styles.StyledLink}
+          >
+            Pilserne
+          </NavLink>
+        </li>
+        <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+          <NavLink
+            to={routes.STATISTICS}
+            activeClassName={styles.Active}
+            className={styles.StyledLink}
+          >
+            Statistikk
+          </NavLink>
+        </li>
+
+        {/* End of navbar */}
+        {token ? (
+          <div className={styles.Last}>
+            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+              <NavLink
+                to={routes.PROFILE}
+                activeClassName={styles.Active}
+                className={styles.StyledLink}
+              >
+                Profil
+              </NavLink>
+            </li>
+            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+              <div className={styles.StyledLink} onClick={logOut}>
+                Logg ut
+              </div>
+            </li>
           </div>
         ) : (
-          <ul>
-            <li>
-              <Link to="/pilserne">Pilserne</Link>
-            </li>
-            <li>
-              <Link to="/statistikk">Statistikk</Link>
-            </li>
-            <li>
-              <Link to="/logg-inn">Logg inn</Link>
-            </li>
-            <li>
-              <Link to="/registrer-deg">Registrer deg</Link>
-            </li>
-          </ul>
-        )}
-      </Menu>
-    );
-  } else {
-    return (
-      <header>
-        <div>
-          <div id="logo-box">
-            <Link to="/">
-              <img
-                id="logo"
-                src={logo}
-                height="40px"
-                width="auto"
-                alt="pils"
-              ></img>
-            </Link>
-            <p id="alpha-tag">alfa</p>
-          </div>
-
-          <nav>
-            {user ? (
-              <div>
-                <ul>
-                  <li>
-                    <Link to="/registrer-pils">Registrer pils</Link>
-                  </li>
-                  <li>
-                    <Link to="/pilserne">Pilserne</Link>
-                  </li>
-                  <li>
-                    <Link to="/statistikk">Statistikk</Link>
-                  </li>
-                  <li className="dropdown">
-                    <a href="javascript:void(0)" className="dropbtn">
-                      {user.name}
-                    </a>
-                    <div className="dropdown-content">
-                      <Link to="/profil">Profil</Link>
-                      <Link to="/innstillinger">Innstillinger</Link>
-                      <Link onClick={logOut}>Logg ut</Link>
-                    </div>
-                  </li>
-                </ul>
+          <div className={styles.Last}>
+            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+              <div className={styles.StyledLink} onClick={logIn}>
+                Logg inn
               </div>
-            ) : (
-              <ul>
-                <li>
-                  <Link to="/pilserne">Pilserne</Link>
-                </li>
-                <li>
-                  <Link to="/statistikk">Statistikk</Link>
-                </li>
-                <li>
-                  <Link to="/logg-inn">Logg inn</Link>
-                </li>
-                <li>
-                  <Link to="/registrer-deg">Registrer deg</Link>
-                </li>
-              </ul>
-            )}
-          </nav>
-        </div>
-      </header>
-    );
-  }
+            </li>
+          </div>
+        )}
+        <a href="#" class={styles.ToggleButton} onClick={() => setViewHamburger(!viewHamburger)}>
+          <span className={styles.Bar}></span>
+          <span className={styles.Bar}></span>
+          <span className={styles.Bar}></span>
+        </a>
+      </ul>
+    </nav>
+  );
 }
 
 export default NavBar;

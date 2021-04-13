@@ -1,0 +1,8 @@
+{
+  "realm": "Pilsteller",
+  "auth-server-url": "http://localhost:8083/auth/",
+  "ssl-required": "external",
+  "resource": "pils-teller",
+  "public-client": true,
+  "confidential-port": 0
+}

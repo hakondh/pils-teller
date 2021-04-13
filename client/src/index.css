@@ -165,3 +165,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Global color scheme */
+:root {
+  --main-gold: #dcab2d;
+}

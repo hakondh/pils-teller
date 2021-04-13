@@ -13,25 +13,25 @@ import Drinkers from "./Components/Drinkers/Drinkers";
 import { UserProvider } from "./UserContext";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  /* const [currentUser, setCurrentUser] = useState(undefined); */
   /* const history = useHistory(); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     // Check if there is a user in localStorage
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setCurrentUser(user);
     }
-  }, []);
+  }, []); */
 
   return (
     <div>
       {/* {loggedIn && <h1>You are logged in!</h1>} */}
 
       <BrowserRouter>
-        <UserProvider value={currentUser}>
+        {/* <UserProvider value={currentUser}> */}
           <NavBar />
-        </UserProvider>
+        {/* </UserProvider> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/registrer-deg" component={UserRegistration} />
