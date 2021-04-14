@@ -2,9 +2,8 @@ const Dao = require("./dao.js");
 
 module.exports = class AuthDao extends Dao{
   postUser(email, callback) {
-    console.log(email)
     super.query(
-      "INSERT INTO users(email) VALUES($1)",
+      "INSERT INTO users(email, name) VALUES($1, $2) RETURNING *",
       email,
       callback
     );

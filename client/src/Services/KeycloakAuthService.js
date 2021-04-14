@@ -9,15 +9,17 @@ const initKeycloak = (renderAfterInit) => {
     silentCheckSsoRedirectUri:
       window.location.origin + "/silent-check-sso.html",
     pkceMethod: "S256", // Prevent Authorization Code Interception Attacks
-  }).then((authenticated) => {
-    if(authenticated) {
+  }).then(async (authenticated) => {
+    if(authenticated) { // If the user is authenticated 
       const email = getEmail()
-      axios.get(`/auth/check-user/${email}`).then((res) => {
-        const registered = res.data;
-        if(!registered) {
-          console.log("Not registered!")
-          axios.post("/auth/user", {email: email}).then(res => console.log(res.data)).catch(err => console.log(err))
+      const name = getName()
+      await axios.get(`/auth/user/${email}`).then(async (res) => {
+        let user = res.data.rows[0];
+        if(!user) { // Then check if the user is in our external db (not keycloak)
+          console.log("Not registered!") // If not, then insert a new user
+          await axios.post("/auth/user", {email: email, name: name}).then(res => user = res.data.rows[0]).catch(err => console.log(err))
         }
+        localStorage.setItem("user", JSON.stringify(user)); // Always set user in localStorage
       })
     }
     renderAfterInit();

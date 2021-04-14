@@ -3,21 +3,19 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-router.get("/check-user/:email", (req, res) => {
+router.get("/user/:email", (req, res) => {
     //Check if the user exists
     const authdao = req.app.get("authdao")
     authdao.checkUser(req.params.email, (status, data) => {
-      console.log(data)
-      res.status(200)
-      res.json(data.rows.length > 0)
+      res.status(200).send(data)
     })
 })
 
 router.post("/user", (req, res) => {
   try{
     const authdao = req.app.get("authdao")
-    authdao.postUser([req.body.email], (status, data) => {
-      res.status(200).send(data);
+    authdao.postUser([req.body.email, req.body.name], (status, data) => {
+      res.status(201).send(data);
     });
   }
   catch(err) {
