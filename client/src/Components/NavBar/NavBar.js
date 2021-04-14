@@ -15,13 +15,14 @@ function NavBar() {
   };
 
   const logOut = () => {
+    localStorage.removeItem("user");
     KeycloakAuthService.doLogout();
   };
 
   return (
     <nav className={styles.NavBar}>
       <ul className={styles.NavList}>
-        <li className={styles.LogoElement}>
+        <li className={styles.LogoElement} onClick={() => setViewHamburger(!viewHamburger)}>
           <NavLink to={routes.HOME} className={styles.First}>
             <img className={styles.Logo} src={logo} alt="pils"></img>
           </NavLink>
