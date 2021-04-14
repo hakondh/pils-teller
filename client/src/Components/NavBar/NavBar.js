@@ -27,7 +27,7 @@ function NavBar() {
           </NavLink>
         </li>
         {token && (
-          <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+          <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
             <NavLink
               to={routes.REGISTER_BEER}
               activeClassName={styles.Active}
@@ -37,7 +37,7 @@ function NavBar() {
             </NavLink>
           </li>
         )}
-        <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+        <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
           <NavLink
             to={routes.DRINKERS}
             activeClassName={styles.Active}
@@ -46,7 +46,7 @@ function NavBar() {
             Pilserne
           </NavLink>
         </li>
-        <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+        <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
           <NavLink
             to={routes.STATISTICS}
             activeClassName={styles.Active}
@@ -59,7 +59,7 @@ function NavBar() {
         {/* End of navbar */}
         {token ? (
           <div className={styles.Last}>
-            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
               <NavLink
                 to={routes.PROFILE}
                 activeClassName={styles.Active}
@@ -68,7 +68,7 @@ function NavBar() {
                 {KeycloakAuthService.getName()}
               </NavLink>
             </li>
-            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
               <div className={styles.StyledLink} onClick={logOut}>
                 Logg ut
               </div>
@@ -76,7 +76,7 @@ function NavBar() {
           </div>
         ) : (
           <div className={styles.Last}>
-            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)}>
+            <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
               <div className={styles.StyledLink} onClick={logIn}>
                 Logg inn
               </div>
