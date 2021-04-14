@@ -1,6 +1,6 @@
 {
   "realm": "Pilsteller",
-  "auth-server-url": "http://localhost:8083/auth/",
+  "auth-server-url": "https://pilsteller-keycloak.herokuapp.com/auth/",
   "ssl-required": "external",
   "resource": "pils-teller",
   "public-client": true,
