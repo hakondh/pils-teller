@@ -40,7 +40,7 @@ function UserSettings(props) {
       });
   };
   return (
-    <div className="container">
+    <div>
       <h1>Innstillinger</h1>
       <p>Velg et nytt profilbilde</p>
       <input type="file" onChange={fileSelectedHandler} />

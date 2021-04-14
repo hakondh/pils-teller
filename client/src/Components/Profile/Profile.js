@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import UserSettings from '../UserSettings/UserSettings'
 
 function Profile(props) {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -53,6 +54,7 @@ function Profile(props) {
           Det er i gjennomsnitt <span>{averageBeers}</span> pils per dag.
         </p>
       )}
+      <UserSettings />
     </div>
   );
 }
