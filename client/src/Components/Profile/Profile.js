@@ -41,10 +41,9 @@ function Profile(props) {
       <img
         className="decorated-img"
         src={"/images/" + user.image}
-        width="295px"
-        height="auto"
         alt="Profilbilde"
       />
+      <div className="box">
       <h1>{user.name}</h1>
       <p>
         Antall pils konsumert: <span>{consumedBeers}</span>
@@ -54,7 +53,11 @@ function Profile(props) {
           Det er i gjennomsnitt <span>{averageBeers}</span> pils per dag.
         </p>
       )}
-      <UserSettings />
+      </div>
+      <div className="box">
+        <UserSettings />
+      </div>
+     
     </div>
   );
 }

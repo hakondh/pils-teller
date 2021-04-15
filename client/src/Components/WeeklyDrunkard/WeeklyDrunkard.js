@@ -10,7 +10,7 @@ function WeeklyDrunkard(props) {
       .get("/beers/weekly-drunkard")
       .then((res) => {
         setDrunkards(res.data.rows);
-        if (res.data.length > 1) setTitleText("Ukens drankere");
+        if (res.data.rows.length > 1) setTitleText("Ukens drankere");
         /* getImages(res.data); */
       })
       .catch((err) => console.log(err));
