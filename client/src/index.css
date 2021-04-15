@@ -149,7 +149,7 @@ header .dropdown:hover .dropdown-content {
 /* Media Queries */
 @media (max-width: 768px) {
   #main h1 {
-    font-size: 90px;
+    font-size: 82px;
     line-height: 90px;
   }
 
