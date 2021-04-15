@@ -43,6 +43,7 @@ function Home(props) {
         <h1 className="header">{beers} pils</h1>
         <p className="text">...har blitt drukket siden 27/8/2020.</p>
         <br />
+        <br />
         <WeeklyDrunkard></WeeklyDrunkard>
       </div>
     </section>

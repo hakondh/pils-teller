@@ -84,7 +84,7 @@ function NavBar() {
             </li>
           </div>
         )}
-        <a href="#" class={styles.ToggleButton} onClick={() => setViewHamburger(!viewHamburger)}>
+        <a href="#" className={styles.ToggleButton} onClick={() => setViewHamburger(!viewHamburger)}>
           <span className={styles.Bar}></span>
           <span className={styles.Bar}></span>
           <span className={styles.Bar}></span>
