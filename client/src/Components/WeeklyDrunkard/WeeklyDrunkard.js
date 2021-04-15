@@ -22,8 +22,9 @@ function WeeklyDrunkard(props) {
       <div>
         {drunkards.length > 0 && (
           <div>
-            {drunkards.map((drunkard) => (
+            {drunkards.map((drunkard, i) => (
               <img
+                key={i}
                 className="decorated-img"
                 src={"/images/" + drunkard.image}
                 alt={drunkard.name + "s profilbilde"}
