@@ -84,6 +84,7 @@
 }
 
 .NavBarTitle {
+  margin-right: 1em;
   text-decoration: none;
   color: var(--main-gold);
 }

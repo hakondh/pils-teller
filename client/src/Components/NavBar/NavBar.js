@@ -29,7 +29,7 @@ function NavBar() {
             </NavLink>
           </li>
           <li>
-              <p className={styles.NavBarTitle}>Sesong 2</p>
+              <NavLink to={routes.HOME} className={styles.NavBarTitle}>Sesong 2</NavLink>
           </li>
         </div>
         
