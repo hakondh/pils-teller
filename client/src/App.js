@@ -11,6 +11,8 @@ import Statistics from "./Components/Statistics/Statistics";
 import UserSettings from "./Components/UserSettings/UserSettings";
 import Drinkers from "./Components/Drinkers/Drinkers";
 import { UserProvider } from "./UserContext";
+import PrivateRoute from "./Components/Hocs/PrivateRoute"
+import StartRoute from "./Components/Hocs/StartRoute";
 
 function App() {
   return (
@@ -19,12 +21,12 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/registrer-deg" component={UserRegistration} />
-          <Route path="/logg-inn" component={LogIn} />
-          <Route path="/profil" component={Profile} />
-          <Route path="/registrer-pils" component={BeerRegistration} />
+          <StartRoute path="/registrer-deg" component={UserRegistration} />
+          <StartRoute path="/logg-inn" component={LogIn} />
+          <PrivateRoute path="/profil" component={Profile} />
+          <PrivateRoute path="/registrer-pils" component={BeerRegistration} />
           <Route path="/statistikk" component={Statistics}></Route>
-          <Route path="/innstillinger" component={UserSettings}></Route>
+          <PrivateRoute path="/innstillinger" component={UserSettings}/>
           <Route path="/pilserne" component={Drinkers}></Route>
         </Switch>
       </BrowserRouter>

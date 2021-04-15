@@ -4,19 +4,24 @@ import KeycloakAuthService from "../../Services/KeycloakAuthService";
 import styles from "./NavBar.module.css";
 import { routes } from "../../Constants/routes";
 import logo from "./iconfinder_Beer_Mug_drink_3017884.png";
+import { useHistory } from "react-router-dom";
+
 
 function NavBar() {
   const token = KeycloakAuthService.getToken();
   const [viewHamburger, setViewHamburger] = useState(false);
   console.log(token)
+  const history = useHistory();
+
 
   const logIn = () => {
     KeycloakAuthService.doLogin();
   };
 
   const logOut = () => {
-    localStorage.removeItem("user");
+    history.push('/')
     KeycloakAuthService.doLogout();
+    localStorage.removeItem("user");
   };
 
   return (
