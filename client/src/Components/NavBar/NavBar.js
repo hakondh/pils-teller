@@ -22,11 +22,17 @@ function NavBar() {
   return (
     <nav className={styles.NavBar}>
       <ul className={styles.NavList}>
-        <li className={styles.LogoElement}>
-          <NavLink to={routes.HOME} className={styles.First}>
-            <img className={styles.Logo} src={logo} alt="pils"></img>
-          </NavLink>
-        </li>
+        <div className={styles.LogoElement}>
+          <li >
+            <NavLink to={routes.HOME} className={styles.First}>
+              <img className={styles.Logo} src={logo} alt="pils"></img>
+            </NavLink>
+          </li>
+          <li>
+              <p className={styles.NavBarTitle}>Sesong 2</p>
+          </li>
+        </div>
+        
         {token && (
           <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
             <NavLink
