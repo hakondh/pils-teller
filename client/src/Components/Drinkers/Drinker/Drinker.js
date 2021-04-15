@@ -29,7 +29,7 @@ function Drinker(props) {
     const todayDate = Date.parse(new Date());
     console.log(todayDate);
     const timeDiff = todayDate - regDate;
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 2;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
     console.log("days: " + days);
     console.log("consumed beers: " + consumedBeers);
     if (days <= 1) return setAverageBeers(consumedBeers);

@@ -38,17 +38,21 @@ function WeeklyDrunkard(props) {
         )}
         <div>
           {drunkards.length > 0 ? (
-            drunkards.map((drunkard, i) => (
-              <span key={drunkard.name}>
-                {drunkard.name}
-                {i < drunkards.length - 1
-                  ? [i === drunkards.length - 2 ? " og " : ", "]
-                  : ", med " +
-                    drunkard.count +
-                    " pils" +
-                    [drunkards.length > 1 ? " hver." : "."]}
-              </span>
-            ))
+            <div>
+              {
+                drunkards.map((drunkard, i) => (
+                  <span key={drunkard.name}>
+                  {drunkard.name}
+                  {i < drunkards.length - 1
+                    ? [i === drunkards.length - 2 ? " og " : ", "]
+                    : ", med " +
+                      drunkard.count +
+                      " pils" +
+                      [drunkards.length > 1 ? " hver." : "."]}
+                </span>
+                ))
+              }
+            </div>
           ) : (
             <div>
               <img
