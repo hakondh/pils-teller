@@ -27,6 +27,7 @@
 }
 
 .LogoElement {
+  height: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -66,7 +67,7 @@
 /* Hamburger menu */
 .ToggleButton {
   position: absolute;
-  top: 1.6rem;
+  top: 3vh;
   right: 1rem;
   display: none;
   flex-direction: column;

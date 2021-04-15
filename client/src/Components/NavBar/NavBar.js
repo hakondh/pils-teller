@@ -22,7 +22,7 @@ function NavBar() {
   return (
     <nav className={styles.NavBar}>
       <ul className={styles.NavList}>
-        <li className={styles.LogoElement} onClick={() => setViewHamburger(!viewHamburger)}>
+        <li className={styles.LogoElement}>
           <NavLink to={routes.HOME} className={styles.First}>
             <img className={styles.Logo} src={logo} alt="pils"></img>
           </NavLink>
