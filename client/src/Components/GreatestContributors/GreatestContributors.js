@@ -21,7 +21,7 @@ function GreatestContributors(props) {
 
   return (
     <div className="box">
-      <h2 className={styles.Header}>{titleText}</h2>
+      <h2 className={styles.Header}>{titleText} denne sesongen</h2>
       <div className="gc-div">
         {greatestContributors.length > 0 && (
           <div>
@@ -30,7 +30,7 @@ function GreatestContributors(props) {
                 className="decorated-img"
                 src={"/images/" + greatestContributor.image}
                 alt={greatestContributor.name + "s profilbilde"}
-                width="100px"
+                width="40%"
                 height="auto"
               />
             ))}
@@ -39,15 +39,16 @@ function GreatestContributors(props) {
         <p>
           {greatestContributors.length > 0
             ? greatestContributors.map((greatestContributor, i) => (
-                <span key={greatestContributor.name}>
+                <span key={greatestContributor.name} className={styles.SpanStyle}>
                   {greatestContributor.name}
                   {i < greatestContributors.length - 1
                     ? [i === greatestContributors.length - 2 ? " og " : ", "]
                     : ", med totalt " +
                       greatestContributor.count +
                       " pils" +
-                      [greatestContributors.length > 1 ? " hver." : "."]}
+                      [greatestContributors.length > 1 ? " hver." : "."]} Bra (?) jobbet!
                 </span>
+                
                 
               ))
             : "Hva i alle dager. Det er ikke registrert en eneste pils. "}
