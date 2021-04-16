@@ -30,6 +30,11 @@ body {
   -moz-osx-font-smoothing: grayscale; */
 }
 
+h1,
+h2 {
+  color: var(--main-gold);
+}
+
 /* Global css */
 .container {
   width: 80%;

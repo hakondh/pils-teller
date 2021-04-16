@@ -4,6 +4,7 @@ import "./Home.css";
 import axios from "axios";
 import WeeklyDrunkard from "../WeeklyDrunkard/WeeklyDrunkard";
 import GreatestContributors from "../GreatestContributors/GreatestContributors";
+import Loader from "../Shared/Loader/Loader";
 
 function Home(props) {
   const [beers, setBeers] = useState(0);
@@ -23,6 +24,7 @@ function Home(props) {
   const [gif, setGif] = useState(
     gifs[Math.floor(Math.random() * (gifs.length - 1))]
   );
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios
@@ -34,11 +36,13 @@ function Home(props) {
           count += beer.amount;
         });
         setBeers(count);
+        setLoading(false)
       })
       .catch((err) => console.log(err));
   }, []);
 
-  return (
+  if(loading) return <Loader />
+  else return (
     <section id="main">
       <div className="container">
         <h1 className="header">{beers} pils</h1>

@@ -67,6 +67,16 @@ function NavBar() {
             Statistikk
           </NavLink>
         </li>
+        
+        <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
+          <NavLink
+            to={routes.HISTORY}
+            activeClassName={styles.Active}
+            className={styles.StyledLink}
+          >
+            Historiske data
+          </NavLink>
+        </li>
 
         {/* End of navbar */}
         {token ? (

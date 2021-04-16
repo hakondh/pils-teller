@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./WeeklyDrunkard.module.css";
+import Loader from "../Shared/Loader/Loader";
 
 function WeeklyDrunkard(props) {
   const [drunkards, setDrunkards] = useState([]);
   const [titleText, setTitleText] = useState("Ukens dranker");
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios
@@ -13,11 +15,13 @@ function WeeklyDrunkard(props) {
         setDrunkards(res.data.rows);
         if (res.data.rows.length > 1) setTitleText("Ukens drankere");
         /* getImages(res.data); */
+        setLoading(false)
       })
       .catch((err) => console.log(err));
   }, []);
 
-  return (
+  if(loading) return <Loader />
+  else return (
     <div className="box">
       <h2>{titleText}</h2>
       <div>

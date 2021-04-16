@@ -4,5 +4,6 @@ export const routes = {
     DRINKERS: "/pilserne",
     STATISTICS: "/statistikk",
     REGISTER: "/registrer-deg",
-    PROFILE: "/profil"
+    PROFILE: "/profil",
+    HISTORY: "/history"
 }

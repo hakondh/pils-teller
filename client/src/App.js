@@ -13,6 +13,8 @@ import Drinkers from "./Components/Drinkers/Drinkers";
 import { UserProvider } from "./UserContext";
 import PrivateRoute from "./Components/Hocs/PrivateRoute"
 import StartRoute from "./Components/Hocs/StartRoute";
+import { routes } from "./Constants/routes";
+import History from "./Components/History/History"
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
           <Route path="/statistikk" component={Statistics}></Route>
           <PrivateRoute path="/innstillinger" component={UserSettings}/>
           <Route path="/pilserne" component={Drinkers}></Route>
+          <Route path={routes.HISTORY} component={History}></Route>
         </Switch>
       </BrowserRouter>
     </div>

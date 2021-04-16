@@ -2,16 +2,67 @@ import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import axios from "axios";
 
-function TotalBeerSumPerUser(props) {
-  const [beerSums, setBeerSums] = useState([]);
-  const [names, setNames] = useState([]);
-  const [chartHeight, setChartHeight] = useState(0);
+function HistoricTotalBeerSumPerUser(props) {
+    // Historic beer sums per user data
+  const userSums = [
+    {
+        "count": "101",
+        "NAME": "Gåtten"
+    },
+    {
+        "count": "97",
+        "NAME": "Gustav Von Skrapelodd"
+    },
+    {
+        "count": "56",
+        "NAME": "Henning"
+    },
+    {
+        "count": "45",
+        "NAME": "BjørnBajas"
+    },
+    {
+        "count": "43",
+        "NAME": "MjødMagnus"
+    },
+    {
+        "count": "40",
+        "NAME": "henrikgranlund"
+    },
+    {
+        "count": "33",
+        "NAME": "Reinn"
+    },
+    {
+        "count": "26",
+        "NAME": "Håkon"
+    },
+    {
+        "count": "23",
+        "NAME": "Murrebassen"
+    },
+    {
+        "count": "14",
+        "NAME": "faderbens"
+    }
+]
+
+    // Parse array
+    let beerSumArr = [];
+    let nameArr = [];
+    userSums.forEach(userSum => {
+        beerSumArr.push(parseInt(userSum.count));
+        nameArr.push(userSum.NAME);
+    })
+
+    const total = beerSumArr.reduce((acc, curr) => acc + curr);
+    console.log(total)
 
   const data = {
-    labels: names,
+    labels: nameArr,
     datasets: [
       {
-        data: beerSums,
+        data: beerSumArr,
         backgroundColor: [
           "rgba(54, 162, 235, 0.2)",
           "rgba(219,112,147, 0.2)",
@@ -42,42 +93,6 @@ function TotalBeerSumPerUser(props) {
       },
     ],
   };
-
-  useEffect(() => {
-    axios
-      .get("/beers/beer-sum-per-user")
-      .then(async (res) => {
-        var beerSumArr = [];
-        let nameArr = [];
-        res.data.rows.forEach((e) => {
-          beerSumArr.push(e.count);
-          nameArr.push(e.name);
-        });
-        await axios
-          .get("/beers")
-          .then((res) => {
-            var count = 0;
-            res.data.rows.forEach((b) => {
-              count += b.amount;
-            });
-            const reducer = (accumulator, currentValue) =>
-              parseInt(accumulator) + parseInt(currentValue);
-            var topCount = beerSumArr.reduce(reducer);
-            if (count > topCount) {
-              console.log("TRUE!");
-              beerSumArr.push(count - topCount);
-              nameArr.push("Andre");
-            }
-          })
-          .catch((err) => console.log(err));
-
-          console.log(beerSumArr)
-          console.log(nameArr)
-        setBeerSums(beerSumArr);
-        setNames(nameArr);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
     <div className="chart-div">
@@ -128,4 +143,4 @@ function TotalBeerSumPerUser(props) {
   );
 }
 
-export default TotalBeerSumPerUser;
+export default HistoricTotalBeerSumPerUser;
