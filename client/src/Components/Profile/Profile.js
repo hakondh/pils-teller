@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserSettings from '../UserSettings/UserSettings'
+import styles from "./Profile.module.css"
 
 function Profile(props) {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -39,7 +40,7 @@ function Profile(props) {
     <div className="container">
       <br />
       <img
-        className="decorated-img"
+        className={`${styles.ImgSize} decorated-img`}
         src={"/images/" + user.image}
         alt="Profilbilde"
       />

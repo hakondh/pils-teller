@@ -4,12 +4,14 @@ import axios from "axios";
 const kc = new Keycloak("/keycloak.json");
 
 const initKeycloak = (renderAfterInit) => {
+  
   kc.init({
     onLoad: "check-sso", // Always go to login if user is not authenticated,
     silentCheckSsoRedirectUri:
       window.location.origin + "/silent-check-sso.html",
     pkceMethod: "S256", // Prevent Authorization Code Interception Attacks
   }).then(async (authenticated) => {
+    console.log("Done!")
     if(authenticated) { // If the user is authenticated 
       const email = getEmail()
       const name = getName()
@@ -23,7 +25,7 @@ const initKeycloak = (renderAfterInit) => {
       })
     }
     renderAfterInit();
-  });
+  }).catch(err => console.log(err));
 };
 
 const doLogin = () => {

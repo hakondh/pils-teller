@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./WeeklyDrunkard.css";
+import styles from "./WeeklyDrunkard.module.css";
+
 function WeeklyDrunkard(props) {
   const [drunkards, setDrunkards] = useState([]);
   const [titleText, setTitleText] = useState("Ukens dranker");
@@ -17,7 +18,7 @@ function WeeklyDrunkard(props) {
   }, []);
 
   return (
-    <div>
+    <div className="box">
       <h2>{titleText}</h2>
       <div>
         {drunkards.length > 0 && (
@@ -26,10 +27,10 @@ function WeeklyDrunkard(props) {
               (drunkard.image &&
                 <img
                 key={i}
-                className="decorated-img"
+                className={`${styles.ImgSize} decorated-img`}
                 src={"/images/" + drunkard.image}
                 alt={drunkard.name + "s profilbilde"}
-                width="100px"
+                width="1em"
                 height="auto"
               />
               )
@@ -39,6 +40,7 @@ function WeeklyDrunkard(props) {
         <div>
           {drunkards.length > 0 ? (
             <div>
+              <p>
               {
                 drunkards.map((drunkard, i) => (
                   <span key={drunkard.name}>
@@ -52,6 +54,7 @@ function WeeklyDrunkard(props) {
                 </span>
                 ))
               }
+              </p>
             </div>
           ) : (
             <div>

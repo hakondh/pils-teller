@@ -1,0 +1,15 @@
+h2 {
+  line-height: 0px;
+}
+
+.ImgSize {
+  width: auto;
+  height: 15em;
+}
+
+@media (max-width: 768px) {
+  .ImgSize {
+    width: auto;
+    height: 8em;
+  }
+}

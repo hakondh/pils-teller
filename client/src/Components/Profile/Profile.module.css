@@ -1,0 +1,10 @@
+.ImgSize {
+  width: 40%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .ImgSize {
+    width: 99%;
+  }
+}
