@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import styles from './GreatestContributors.module.css'
 
 function GreatestContributors(props) {
   const [greatestContributors, setGreatestContributor] = useState([]);
@@ -19,14 +20,14 @@ function GreatestContributors(props) {
   }, []);
 
   return (
-    <div className="chart-div">
-      <h2 className="chart-title">{titleText}</h2>
+    <div className="box">
+      <h2 className={styles.Header}>{titleText}</h2>
       <div className="gc-div">
         {greatestContributors.length > 0 && (
           <div>
             {greatestContributors.map((greatestContributor) => (
               <img
-                className="gc-image"
+                className="decorated-img"
                 src={"/images/" + greatestContributor.image}
                 alt={greatestContributor.name + "s profilbilde"}
                 width="100px"
@@ -42,11 +43,12 @@ function GreatestContributors(props) {
                   {greatestContributor.name}
                   {i < greatestContributors.length - 1
                     ? [i === greatestContributors.length - 2 ? " og " : ", "]
-                    : ", med " +
+                    : ", med totalt " +
                       greatestContributor.count +
                       " pils" +
                       [greatestContributors.length > 1 ? " hver." : "."]}
                 </span>
+                
               ))
             : "Hva i alle dager. Det er ikke registrert en eneste pils. "}
         </p>

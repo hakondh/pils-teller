@@ -8,19 +8,6 @@
   background-color: black;
 }
 
-.gc-image {
-  width: auto;
-  height: 90%;
-  border: 1px solid var(--main-gold);
-  margin: auto;
-}
-
-.gc-div {
-  height: 200px;
-  display: flex;
-  border: 1px solid red;
-}
-
 p {
   color: var(--main-gold);
 }

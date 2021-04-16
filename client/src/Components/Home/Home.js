@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import axios from "axios";
 import WeeklyDrunkard from "../WeeklyDrunkard/WeeklyDrunkard";
+import GreatestContributors from "../GreatestContributors/GreatestContributors";
 
 function Home(props) {
   const [beers, setBeers] = useState(0);
@@ -45,6 +46,7 @@ function Home(props) {
         <br />
         <br />
         <WeeklyDrunkard></WeeklyDrunkard>
+        <GreatestContributors />
       </div>
     </section>
   );

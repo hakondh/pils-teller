@@ -1,7 +1,6 @@
 import React from "react";
 import TotalBeerSumPerUser from "./TotalBeerSumPerUser";
 import BeerOverTime from "./BeerOverTime";
-import GreatestContributors from "./GreatestContributors";
 import "./Statistics.css";
 
 function Statistics(props) {
@@ -9,7 +8,6 @@ function Statistics(props) {
     <div id="statistics-container">
       <TotalBeerSumPerUser />
       <BeerOverTime />
-      {/* <GreatestContributors /> */}
     </div>
   );
 }
