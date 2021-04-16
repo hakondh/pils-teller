@@ -43,7 +43,7 @@ function BeerOverTime(props) {
           datesArr.push(Date.parse(e.date));
         });
         let firstDate = new Date(datesArr[0]);
-        let lastDate = new Date(datesArr[datesArr.length - 1]);
+        let lastDate = Date.parse(new Date()); //new Date(datesArr[datesArr.length - 1]); // This would be the date of the last registered beer
         let filledBeerSumsArr = [];
         let filledDatesArr = [];
         for (var d = firstDate; d <= lastDate; d.setDate(d.getDate() + 1)) {
