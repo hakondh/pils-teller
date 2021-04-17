@@ -3,7 +3,7 @@ import styles from "./Loader.module.css";
 
 function Loader() {
   return (
-    <div className="lds-ring">
+    <div className={styles.LdsRing}>
       <div></div>
       <div></div>
       <div></div>

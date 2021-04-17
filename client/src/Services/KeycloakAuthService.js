@@ -3,8 +3,16 @@ import axios from "axios";
 
 const kc = new Keycloak("/keycloak.json");
 
-const initKeycloak = (renderAfterInit) => {
-  
+const initKeycloak = async (renderAfterInit) => {
+  console.log("Initating keycloak...")
+  // Do call to waken the Keycloak server
+  await axios.get('https://stm-cors-anywhere.herokuapp.com/https://pilsteller-keycloak.herokuapp.com')
+  .then(() => {
+    console.log("Keycloak call success")
+    localStorage.reload();
+  }
+  )
+  .catch(err => console.log(err))
   kc.init({
     onLoad: "check-sso", // Always go to login if user is not authenticated,
     silentCheckSsoRedirectUri:
@@ -26,6 +34,7 @@ const initKeycloak = (renderAfterInit) => {
     }
     renderAfterInit();
   }).catch(err => console.log(err));
+
 };
 
 const doLogin = () => {

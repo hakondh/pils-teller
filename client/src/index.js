@@ -5,6 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import KeycloakAuthService from './Services/KeycloakAuthService'
 import HttpService from './Services/HttpService'
+import Loader from './Components/Shared/Loader/Loader';
+
+// Loader while keycloak initializes
+ReactDOM.render(
+  <React.StrictMode>
+    <h1>Laster inn...</h1>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 
 const renderApp = () => ReactDOM.render(
