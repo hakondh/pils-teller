@@ -7,9 +7,9 @@ const initKeycloak = async (renderAfterInit) => {
   console.log("Initating keycloak...")
   // Do call to waken the Keycloak server
   await axios.get('https://stm-cors-anywhere.herokuapp.com/https://pilsteller-keycloak.herokuapp.com')
-  .then(() => {
+  .then((res) => {
+    console.log(res)
     console.log("Keycloak call success")
-    localStorage.reload();
   }
   )
   .catch(err => console.log(err))

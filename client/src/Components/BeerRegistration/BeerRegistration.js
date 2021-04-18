@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function BeerRegistration(props) {
-  const [beers, setBeers] = useState(0);
+  const [beers, setBeers] = useState(1);
   const [date, setDate] = useState(0);
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -43,6 +43,8 @@ function BeerRegistration(props) {
     return today;
   };
 
+  
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
@@ -50,11 +52,12 @@ function BeerRegistration(props) {
         <input
           id="beerInput"
           type="number"
-          min="0"
+          min="1"
           placeholder="Antall pils"
           value={beers}
           onChange={(e) => setBeers(e.target.value)}
           required
+          
         />
         <br />
         <br />
