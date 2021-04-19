@@ -25,21 +25,31 @@ router.post("/user", (req, res) => {
   
 })
 
-/* router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     // Check if the name is already in use
     const authdao = req.app.get("authdao");
     console.log("Checking if the name is already taken...");
-    authdao.checkUser(req.body.name, async (status, data) => {
-      if (data.length > 0) {
+    await authdao.checkUserName(req.body.name, (status, data) => {
+      if (data.rows.length > 0) {
         console.log("Name is already taken.");
         return res.status(400).send("Navnet er allerede tatt.");
       }
-      console.log("Name is available!");
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      console.log("POST /users");
-      authdao.postUser([req.body.name, hashedPassword], (status, data) => {
-        res.status(200).send(data);
+    });
+    await authdao.checkUserEmail(req.body.email, (status, data) => {
+      if (data.rows.length > 0) {
+        console.log("Email is already taken.");
+        return res.status(400).send("Mailen er allerede i bruk.");
+      }
+    });
+    console.log("Name is available!");
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    console.log("POST /users");
+    authdao.postUser([req.body.name, req.body.email, hashedPassword], (status, data) => {
+      const user = data.rows[0]
+      const token = createToken(user.id, user.name, user.email, user.image, user.reg_date)
+      res.status(200).send({
+        accessToken: token,
       });
     });
   } catch (err) {
@@ -52,9 +62,9 @@ router.post("/login", (req, res) => {
   try {
     const authdao = req.app.get("authdao");
     console.log("Checking if the user exists...");
-    authdao.checkUser(req.body.name, async (status, data) => {
+    authdao.checkUserEmail(req.body.email, async (status, data) => {
       // Check if the user exists
-      if (data.length == 0) {
+      if (data.rows.length == 0) {
         console.log("User does not exist.");
         return res
           .status(400)
@@ -63,7 +73,8 @@ router.post("/login", (req, res) => {
       console.log("The user exists!");
       console.log("Checking if the password is correct...");
       //Check if password is correct
-      const user = data[0];
+      console.log(data.rows)
+      const user = data.rows[0];
       const valid = await bcrypt.compare(req.body.password, user.password);
       if (!valid) {
         console.log("The password is incorrect.");
@@ -72,15 +83,9 @@ router.post("/login", (req, res) => {
       console.log("The password is correct!");
       console.log("Creating a token and thus signing in the user...");
       //Create a token if the login was successful
-      const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET, {
-        expiresIn: 86400,
-      }); // This token will expire in 24 hours
+      const token = createToken(user.id, user.name, user.email, user.image, user.reg_date)
       res.status(200).send({
-        id: user.id,
-        name: req.body.name,
         accessToken: token,
-        image: user.image,
-        reg_date: user.reg_date,
       });
     });
   } catch (err) {
@@ -93,6 +98,12 @@ router.post("/check-login-state", (req, res) => {
   console.log("Checking login state...");
   const token = req.get("auth-token");
   res.status(200).send("ok");
-}); */
+});
+
+function createToken(userId, userName, userEmail, userImage, userRegDate) {
+  return jwt.sign({ user: {id: userId, name: userName, email: userEmail, image: userImage, reg_date: userRegDate} }, process.env.TOKEN_SECRET, {
+    expiresIn: 86400,
+  }); // This token will expire in 24 hours
+}
 
 module.exports = router;
