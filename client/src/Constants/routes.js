@@ -5,5 +5,6 @@ export const routes = {
     STATISTICS: "/statistikk",
     REGISTER: "/registrer-deg",
     PROFILE: "/profil",
-    HISTORY: "/history"
+    HISTORY: "/history",
+    LOGIN: "/logg-inn"
 }

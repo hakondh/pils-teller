@@ -1,0 +1,5 @@
+.StyledLink {
+  text-decoration: none;
+  color: var(--main-gold);
+  font-size: 1em;
+}

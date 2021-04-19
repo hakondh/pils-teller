@@ -3,9 +3,11 @@ import axios from "axios";
 import "../../App.css";
 import "./UserRegistration.css";
 import { useHistory } from "react-router-dom";
+import AuthService from "../../Services/AuthService";
 
 function UserRegistration(props) {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -16,14 +18,20 @@ function UserRegistration(props) {
     axios
       .post("/auth/register", {
         name: name,
+        email: email,
         password: password,
       })
       .then(async (res) => {
+        // Upload image if added
+        // Set token and user in localStorage
+        localStorage.setItem("token", JSON.stringify(res.data)); // Set token in localStorage
+        localStorage.setItem("user", JSON.stringify(AuthService.getUser()))
+
         if (selectedFile) {
           await fileUploadHandler(res.data.insertId);
         }
 
-        history.push("/logg-inn");
+        history.push("/"); // Go to home after login
         window.location.reload();
       })
       .catch((err) => {
@@ -50,7 +58,12 @@ function UserRegistration(props) {
           );
         },
       })
-      .then(console.log("Uploaded!"))
+      .then((res) => {
+        // Set the new image in localStorage
+        const user = JSON.parse(localStorage.getItem("user"));
+        user.image = res.data.image;
+        localStorage.setItem("user", JSON.stringify(user));
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -66,6 +79,16 @@ function UserRegistration(props) {
           placeholder="Navn"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <br />
+        <br />
+        <input
+          id="emailInput"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <br />

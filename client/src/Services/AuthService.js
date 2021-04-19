@@ -1,7 +1,8 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 class AuthService {
-  static async login(name, password) {
+  /* static async login(name, password) {
     const res = await axios.post("/auth/login", {
       name: name,
       password: password,
@@ -12,7 +13,7 @@ class AuthService {
       return;
     }
     return res.data;
-  }
+  } */
 
   logout() {
     localStorage.removeItem("user");
@@ -20,6 +21,17 @@ class AuthService {
 
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
+  }
+
+  getToken() {
+    return JSON.parse(localStorage.getItem("token"));
+  }
+  
+  getUser() {
+    const token = JSON.parse(localStorage.getItem("token"));
+    if(!token) return null
+    const decoded = jwt_decode(token.accessToken);
+    return decoded.user;
   }
 }
 

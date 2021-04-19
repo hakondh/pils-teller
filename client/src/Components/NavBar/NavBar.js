@@ -5,22 +5,27 @@ import styles from "./NavBar.module.css";
 import { routes } from "../../Constants/routes";
 import logo from "./iconfinder_Beer_Mug_drink_3017884.png";
 import { useHistory } from "react-router-dom";
+import AuthService from "../../Services/AuthService";
 
 
 function NavBar() {
-  const token = KeycloakAuthService.getToken();
+  const token = AuthService.getToken();
+  const user = AuthService.getUser()
   const [viewHamburger, setViewHamburger] = useState(false);
-  console.log(token)
+  //console.log(token)
   const history = useHistory();
+
+  //console.log(AuthService.getName())
 
 
   const logIn = () => {
-    KeycloakAuthService.doLogin();
+    history.push(routes.LOGIN)
   };
 
   const logOut = () => {
     history.push('/')
-    KeycloakAuthService.doLogout();
+    //KeycloakAuthService.doLogout();
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
   };
 
@@ -87,7 +92,7 @@ function NavBar() {
                 activeClassName={styles.Active}
                 className={styles.StyledLink}
               >
-                {KeycloakAuthService.getName()}
+                {user.name}
               </NavLink>
             </li>
             <li className={(viewHamburger ? styles.NavElement.active : styles.NavElement)} onClick={() => setViewHamburger(false)}>
