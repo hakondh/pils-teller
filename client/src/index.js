@@ -8,22 +8,22 @@ import HttpService from './Services/HttpService'
 import Loader from './Components/Shared/Loader/Loader';
 
 // Loader while keycloak initializes
-ReactDOM.render(
+/* ReactDOM.render(
   <React.StrictMode>
     <h1>Laster inn...</h1>
   </React.StrictMode>,
   document.getElementById('root')
-);
+); */
 
 
-const renderApp = () => ReactDOM.render(
+ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-KeycloakAuthService.initKeycloak(renderApp) // Initiate keycloak, then call renderApp in callback
+//KeycloakAuthService.initKeycloak(renderApp) // Initiate keycloak, then call renderApp in callback
 //HttpService.configure() // Configure axios to add tokens to requests
 
 

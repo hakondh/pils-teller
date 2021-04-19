@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import AuthService from "../../Services/AuthService";
 
 function BeerRegistration(props) {
   const [beers, setBeers] = useState(1);
   const [date, setDate] = useState(0);
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = AuthService.getUser();
 
   useEffect(() => {
     setDate(getTodaysDate());

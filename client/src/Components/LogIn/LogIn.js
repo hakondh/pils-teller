@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import "../../Services/AuthService";
 import "../../App.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
+import { routes } from "../../Constants/routes";
+import styles from './Login.module.css'
+import AuthService from "../../Services/AuthService";
 
 function LogIn(props) {
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const history = useHistory();
@@ -15,11 +18,12 @@ function LogIn(props) {
 
     axios
       .post("/auth/login", {
-        name: name,
+        email: email,
         password: password,
       })
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data)); // Set token in localStorage
+        localStorage.setItem("token", JSON.stringify(res.data)); // Set token in localStorage
+        localStorage.setItem("user", JSON.stringify(AuthService.getUser()))
         history.push("/"); // Go to home after login
         window.location.reload();
       })
@@ -34,10 +38,10 @@ function LogIn(props) {
         <h1>Logg inn</h1>
         <input
           id="nameInput"
-          type="text"
-          placeholder="Navn"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <br />
@@ -58,6 +62,8 @@ function LogIn(props) {
           </div>
         )}
         <input className="button" type="submit" value="Logg inn" />
+        <br/>
+        <NavLink className={styles.StyledLink} to={routes.REGISTER}>Ny bruker? Registrer deg her</NavLink>
       </form>
     </div>
   );

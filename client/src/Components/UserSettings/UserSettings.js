@@ -26,7 +26,7 @@ function UserSettings(props) {
       })
       .then((res) => {
         // Delete the old pic from /images to save space
-        const imageName = JSON.parse(localStorage.getItem("user")).image;
+        const imageName = user.image;
         axios.delete("/images/" + imageName).catch((err) => console.log(err));
 
         // Set the new image in localStorage

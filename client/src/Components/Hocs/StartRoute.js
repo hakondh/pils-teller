@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect, Route } from "react-router-dom";
-import KeycloakAuthService from "../../Services/KeycloakAuthService"
+import AuthService from "../../Services/AuthService"
 import { routes } from "../../Constants/routes";
 
 export const StartRoute = props => {
-    const authenticated = KeycloakAuthService.isLoggedIn();
+    const authenticated = AuthService.getToken()
 
     // If user is logged in, then redirect user to the start page
     if(authenticated) return <Redirect to={ routes.Home } />
