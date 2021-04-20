@@ -2,4 +2,8 @@
   text-decoration: none;
   color: var(--main-gold);
   font-size: 1em;
+  background-color: black;
+  width: auto;
+  padding-right: 0.5em;
+  border-radius: 0.5em;
 }

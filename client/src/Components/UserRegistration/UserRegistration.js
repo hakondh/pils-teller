@@ -9,12 +9,17 @@ function UserRegistration(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repeatedPassword, setRepeatedPassword] = useState("");
   const [error, setError] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(password !== repeatedPassword) {
+      setError("Passordene du fylte inn er ikke like.")
+      return;
+    }
     axios
       .post("/auth/register", {
         name: name,
@@ -76,47 +81,54 @@ function UserRegistration(props) {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <h1>Registrer deg</h1>
+        <label for="nameInput">Navn</label>
         <input
           id="nameInput"
           type="text"
-          placeholder="Navn"
+          placeholder="pilsenavn"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
         <br />
-        <br />
+        <label for="emailInput">Email</label>
         <input
           id="emailInput"
           type="email"
-          placeholder="Email"
+          placeholder="din@email.no"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <br />
-        <br />
+        <label for="passwordInput">Passord</label>
         <input
           id="passwordInput"
           type="password"
-          placeholder="Passord"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {!error && <br />}
-        <br />
-        {error !== "" && (
-          <div>
-            <p className="error">{error}</p>
-          </div>
-        )}
+        <label for="repeatedPasswordInput">Gjenta passord</label>
+        <input
+          id="repeatedPasswordInput"
+          type="password"
+          value={repeatedPassword}
+          onChange={(e) => setRepeatedPassword(e.target.value)}
+          required
+        />
+        <br/>
         <label for="image-input">Profilbilde</label>
-        <br />
+        <br/>
+        <label className="file-input" for="image-input">
+          <i class="fas fa-upload"></i> Trykk for å laste opp
+        </label>
+        {selectedFile && <span id="file-selected">{selectedFile.name}</span>}
         <input id="image-input" type="file" onChange={fileSelectedHandler} />
         <br />
         <br />
-        <input className="button" type="submit" value="Registrer" />
+        <input type="submit" value="Registrer" />
+        {error !== "" && <span className="error">{error}</span>}
       </form>
     </div>
   );

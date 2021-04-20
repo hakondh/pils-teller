@@ -1,0 +1,6 @@
+/* Media Queries */
+@media (min-width: 768px) {
+  .reg-container {
+    width: 35%;
+  }
+}

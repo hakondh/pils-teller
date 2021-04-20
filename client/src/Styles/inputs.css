@@ -1,0 +1,32 @@
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background: #dcab2d;
+  border-color: black;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-input {
+  width: 99.5%;
+  background-color: black;
+  border: 1px solid var(--main-gold);
+  display: inline-block;
+  padding: 12px 0;
+  cursor: pointer;
+  margin-top: 0.6em;
+}
+
+.file-input i {
+  padding-left: 12px;
+}

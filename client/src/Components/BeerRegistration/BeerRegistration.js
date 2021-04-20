@@ -48,13 +48,15 @@ function BeerRegistration(props) {
 
   return (
     <div className="container">
+      <div className="reg-container">
       <form onSubmit={handleSubmit}>
         <h1>Registrer pils</h1>
+        <label for="beerInput">Antall enheter</label>
         <input
           id="beerInput"
           type="number"
           min="1"
-          placeholder="Antall pils"
+          placeholder="0"
           value={beers}
           onChange={(e) => setBeers(e.target.value)}
           required
@@ -63,7 +65,7 @@ function BeerRegistration(props) {
         <br />
         <br />
         <label htmlFor="beerTime">
-          Dato (dagens dato vil brukes som standard)
+          Dato (la stå for dagens dato)
         </label>
         <br />
 
@@ -81,8 +83,10 @@ function BeerRegistration(props) {
             <p className="error">{error}</p>
           </div>
         )} */}
-        <input className="button" type="submit" value="Registrer pils" />
+        <input type="submit" value="Registrer pils" />
       </form>
+      </div>
+      
     </div>
   );
 }

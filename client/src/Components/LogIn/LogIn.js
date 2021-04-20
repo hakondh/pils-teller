@@ -34,22 +34,23 @@ function LogIn(props) {
 
   return (
     <div className="container">
+      <div className="reg-container">
       <form onSubmit={handleSubmit}>
         <h1>Logg inn</h1>
+        <label for="nameInput">Email</label>
         <input
           id="nameInput"
           type="email"
-          placeholder="Email"
+          placeholder="din@email.no"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <br />
-        <br />
+        <label for="passwordInput">Passord</label>
         <input
           id="passwordInput"
           type="password"
-          placeholder="Passord"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -61,10 +62,11 @@ function LogIn(props) {
             <p className="error">{error}</p>
           </div>
         )}
-        <input className="button" type="submit" value="Logg inn" />
-        <br/>
+        <input type="submit" value="Logg inn" />
         <NavLink className={styles.StyledLink} to={routes.REGISTER}>Ny bruker? Registrer deg her</NavLink>
       </form>
+      </div>
+      
     </div>
   );
 }

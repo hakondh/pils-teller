@@ -1,0 +1,16 @@
+/* Box css used globally */
+.box {
+  width: 40%;
+  margin-bottom: 1em;
+  padding-left: 1em;
+  border: 1px solid var(--main-gold);
+  float: left;
+  background-color: black;
+}
+
+@media (max-width: 768px) {
+  /* Box css uses globally */
+  .box {
+    width: 90%;
+  }
+}

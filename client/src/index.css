@@ -153,16 +153,6 @@ header .dropdown:hover .dropdown-content {
   float: left;
 }
 
-/* Box css uses globally */
-.box {
-  width: 40%;
-  margin-bottom: 1em;
-  padding-left: 1em;
-  border: 1px solid var(--main-gold);
-  float: left;
-  background-color: black;
-}
-
 /* Media Queries */
 @media (max-width: 768px) {
   #main h1 {
@@ -172,11 +162,6 @@ header .dropdown:hover .dropdown-content {
 
   #main p {
     width: 50%;
-  }
-
-  /* Box css uses globally */
-  .box {
-    width: 90%;
   }
 }
 

@@ -1,3 +1,7 @@
+@import "Styles/inputs.css";
+@import "Styles/registration.css";
+@import "Styles/containers.css";
+@import "Styles/text.css";
 /* .container {
   width: 750px;
   height: auto;
