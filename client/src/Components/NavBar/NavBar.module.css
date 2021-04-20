@@ -55,9 +55,10 @@
 }
 
 .Last {
-  margin-left: auto;
+  align-self: stretch;
   display: flex;
-  height: 100%;
+  align-items: center;
+  margin-left: auto;
 }
 
 .Last.NavElement {
