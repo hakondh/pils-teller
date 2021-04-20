@@ -27,6 +27,7 @@ function NavBar() {
     //KeycloakAuthService.doLogout();
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    window.location.reload();
   };
 
   return (

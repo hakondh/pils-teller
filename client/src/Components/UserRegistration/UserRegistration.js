@@ -22,21 +22,24 @@ function UserRegistration(props) {
         password: password,
       })
       .then(async (res) => {
-        // Upload image if added
+        
         // Set token and user in localStorage
         localStorage.setItem("token", JSON.stringify(res.data)); // Set token in localStorage
-        localStorage.setItem("user", JSON.stringify(AuthService.getUser()))
+        const user = AuthService.getUser();
+        localStorage.setItem("user", JSON.stringify(user))
+
+        // Upload image if added
 
         if (selectedFile) {
-          await fileUploadHandler(res.data.insertId);
+          await fileUploadHandler(user.id);
         }
 
-        history.push("/"); // Go to home after login
-        window.location.reload();
+        //history.push("/"); // Go to home after login
+        //window.location.reload();
       })
       .catch((err) => {
         console.log(err);
-        setError(err.response.data);
+        setError(err.message);
       });
   };
 
