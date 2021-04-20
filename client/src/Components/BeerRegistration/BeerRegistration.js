@@ -63,12 +63,10 @@ function BeerRegistration(props) {
           
         />
         <br />
-        <br />
         <label htmlFor="beerTime">
           Dato (la stå for dagens dato)
         </label>
         <br />
-
         <input
           type="date"
           id="beerTime"
