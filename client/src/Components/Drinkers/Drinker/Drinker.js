@@ -42,6 +42,7 @@ function Drinker(props) {
     <div className="drinker-container">
       <h1 id="name-title">{props.user.name}</h1>
       <p>Registrerte seg {date}</p>
+      
       {props.user.image && <img
         className="drinker-image"
         src={"../../../../../images/" + props.user.image}
