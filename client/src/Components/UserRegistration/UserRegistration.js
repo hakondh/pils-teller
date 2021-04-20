@@ -34,8 +34,8 @@ function UserRegistration(props) {
           await fileUploadHandler(user.id);
         }
 
-        //history.push("/"); // Go to home after login
-        //window.location.reload();
+        history.push("/"); // Go to home after login
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
