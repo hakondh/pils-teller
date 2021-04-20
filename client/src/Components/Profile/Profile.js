@@ -39,11 +39,12 @@ function Profile(props) {
   return (
     <div className="container">
       <br />
-      <img
+      {user.image ? <img
         className={`${styles.ImgSize} decorated-img`}
         src={"/images/" + user.image}
         alt="Profilbilde"
       />
+      : <p>Du har ikke valgt noe profilbilde enda</p>}
       <div className="box">
       <h1>{user.name}</h1>
       <p>

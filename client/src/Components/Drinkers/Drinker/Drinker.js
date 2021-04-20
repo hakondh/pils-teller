@@ -42,11 +42,11 @@ function Drinker(props) {
     <div className="drinker-container">
       <h1 id="name-title">{props.user.name}</h1>
       <p>Registrerte seg {date}</p>
-      <img
+      {props.user.image && <img
         className="drinker-image"
         src={"../../../../../images/" + props.user.image}
         alt={props.user.name + "s profilbilde"}
-      />
+      />}
       <div className="info-div">
         <p>
           Antall pils konsumert: <span>{consumedBeers}</span>
