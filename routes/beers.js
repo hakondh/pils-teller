@@ -43,7 +43,12 @@ router.post("/", (req, res) => {
   req.app
     .get("beersdao")
     .postBeers(
-      [req.body.amount, req.body.reg_date, req.body.user_id],
+      [
+        req.body.amount,
+        req.body.reg_date,
+        req.body.user_id,
+        req.body.drink_type,
+      ],
       (status, data) => {
         res.status(status);
         res.json(data);

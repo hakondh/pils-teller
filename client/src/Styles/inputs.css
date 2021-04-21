@@ -6,6 +6,7 @@ input {
   border: 1px solid black;
   border-radius: 4px;
   box-sizing: border-box;
+  -webkit-appearance: none;
 }
 
 input[type="submit"] {
@@ -30,4 +31,18 @@ input[type="file"] {
 
 .file-input i {
   padding-left: 12px;
+}
+
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: white;
+  background: url(https://www.flaticon.com/svg/vstatic/svg/32/32195.svg?token=exp=1619008334~hmac=69beda81f9c3651349b9a3a90acd991d)
+    96% / 3% no-repeat #eee;
 }

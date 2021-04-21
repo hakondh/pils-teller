@@ -5,13 +5,19 @@ import AuthService from "../../Services/AuthService";
 
 function BeerRegistration(props) {
   const [beers, setBeers] = useState(1);
+  const [drinkTypes, setDrinkTypes] = useState([]);
+  const [selectedDrinkType, setSelectedDrinkType] = useState(0);
   const [date, setDate] = useState(0);
+  const [success, setSuccess] = useState("");
   const history = useHistory();
   const user = AuthService.getUser();
 
   useEffect(() => {
     setDate(getTodaysDate());
-    axios.get("/drink-types").then((res) => console.log(res.data.rows));
+    axios.get("/drink-types").then((res) => {
+      setDrinkTypes(res.data.rows);
+      setSelectedDrinkType(res.data.rows[0].id);
+    });
   }, []);
 
   const handleSubmit = (e) => {
@@ -21,10 +27,13 @@ function BeerRegistration(props) {
         amount: beers,
         reg_date: date,
         user_id: user.id,
+        drink_type: selectedDrinkType,
       })
       .then((res) => {
-        history.push("/");
-        window.location.reload();
+        setSuccess("Enheter registrert!");
+        setBeers(1);
+        setSelectedDrinkType(drinkTypes[0].id);
+        setDate(getTodaysDate());
       })
       .catch((err) => {
         console.log(err);
@@ -61,6 +70,18 @@ function BeerRegistration(props) {
             required
           />
           <br />
+          <label>Enhetstype</label>
+          <br />
+          <div className="select-wrapper">
+            <select
+              value={selectedDrinkType}
+              onChange={(evt) => setSelectedDrinkType(evt.target.value)}
+            >
+              {drinkTypes.map((drinkType) => (
+                <option value={drinkType.id}>{drinkType.name}</option>
+              ))}
+            </select>
+          </div>
           <label htmlFor="beerTime">Dato (la stå for dagens dato)</label>
           <br />
           <input
@@ -78,6 +99,7 @@ function BeerRegistration(props) {
           </div>
         )} */}
           <input type="submit" value="Registrer pils" />
+          {success && <p>{success}</p>}
         </form>
       </div>
     </div>
