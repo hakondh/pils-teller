@@ -48,7 +48,7 @@ function Home(props) {
         <div className="container">
           <h1 className="header">{beers} pils</h1>
           <p className="text">
-            ...og andre enheter har blitt drukket siden 27/8/2020.
+            ...og andre enheter har blitt drukket siden 21/4/2021.
           </p>
           <br />
           <br />
