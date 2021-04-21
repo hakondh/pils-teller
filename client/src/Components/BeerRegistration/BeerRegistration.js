@@ -11,6 +11,7 @@ function BeerRegistration(props) {
 
   useEffect(() => {
     setDate(getTodaysDate());
+    axios.get("/drink-types").then((res) => console.log(res.data.rows));
   }, []);
 
   const handleSubmit = (e) => {
@@ -44,47 +45,41 @@ function BeerRegistration(props) {
     return today;
   };
 
-  
-
   return (
     <div className="container">
       <div className="reg-container">
-      <form onSubmit={handleSubmit}>
-        <h1>Registrer pils</h1>
-        <label for="beerInput">Antall enheter</label>
-        <input
-          id="beerInput"
-          type="number"
-          min="1"
-          placeholder="0"
-          value={beers}
-          onChange={(e) => setBeers(e.target.value)}
-          required
-          
-        />
-        <br />
-        <label htmlFor="beerTime">
-          Dato (la stå for dagens dato)
-        </label>
-        <br />
-        <input
-          type="date"
-          id="beerTime"
-          name="beerTime"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        ></input>
-        <br />
-        <br />
-        {/* {error !== "" && (
+        <form onSubmit={handleSubmit}>
+          <h1>Registrer pils</h1>
+          <label for="beerInput">Antall enheter</label>
+          <input
+            id="beerInput"
+            type="number"
+            min="1"
+            placeholder="0"
+            value={beers}
+            onChange={(e) => setBeers(e.target.value)}
+            required
+          />
+          <br />
+          <label htmlFor="beerTime">Dato (la stå for dagens dato)</label>
+          <br />
+          <input
+            type="date"
+            id="beerTime"
+            name="beerTime"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          ></input>
+          <br />
+          <br />
+          {/* {error !== "" && (
           <div>
             <p className="error">{error}</p>
           </div>
         )} */}
-        <input type="submit" value="Registrer pils" />
-      </form>
+          <input type="submit" value="Registrer pils" />
+        </form>
       </div>
-      
     </div>
   );
 }

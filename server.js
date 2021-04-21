@@ -27,8 +27,8 @@ const pool = new Pool({
   host: process.env.DB_URL,
   port: process.env.DB_PORT, */
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } 
-})
+  ssl: { rejectUnauthorized: false },
+});
 //app.set("pool", pool); // Set pool for use on routes
 
 // Make the images-folder publicly accessible so that the front-end can access the profile pictures
@@ -51,6 +51,12 @@ const beersRoute = require("./routes/beers");
 const BeersDao = require("./dao/BeersDao");
 app.use("/beers", beersRoute);
 app.set("beersdao", new BeersDao(pool));
+
+/* Drink types */
+const drinkTypesRoute = require("./routes/drinkTypes");
+const DrinkTypesDao = require("./dao/DrinkTypesDao");
+app.use("/drink-types", drinkTypesRoute);
+app.set("drinktypesdao", new DrinkTypesDao(pool));
 
 const imagesRoute = require("./routes/images");
 app.use("/images", imagesRoute);
