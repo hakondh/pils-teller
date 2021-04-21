@@ -58,7 +58,7 @@ function BeerRegistration(props) {
     <div className="container">
       <div className="reg-container">
         <form onSubmit={handleSubmit}>
-          <h1>Registrer pils</h1>
+          <h1>Registrer enheter</h1>
           <label for="beerInput">Antall enheter</label>
           <input
             id="beerInput"

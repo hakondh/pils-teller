@@ -24,38 +24,41 @@ function Home(props) {
   const [gif, setGif] = useState(
     gifs[Math.floor(Math.random() * (gifs.length - 1))]
   );
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get("/beers")
       .then((res) => {
-        console.log(res.data.rows)
+        console.log(res.data.rows);
         var count = 0;
         res.data.rows.forEach((beer) => {
           count += beer.amount;
         });
         setBeers(count);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  if(loading) return <Loader />
-  else return (
-    <section id="main">
-      <div className="container">
-        <h1 className="header">{beers} pils</h1>
-        <p className="text">...har blitt drukket siden 27/8/2020.</p>
-        <br />
-        <br />
-        <div className="info-container">
-          <WeeklyDrunkard></WeeklyDrunkard>
-          <GreatestContributors />
+  if (loading) return <Loader />;
+  else
+    return (
+      <section id="main">
+        <div className="container">
+          <h1 className="header">{beers} pils</h1>
+          <p className="text">
+            ...og andre enheter har blitt drukket siden 27/8/2020.
+          </p>
+          <br />
+          <br />
+          <div className="info-container">
+            <WeeklyDrunkard></WeeklyDrunkard>
+            <GreatestContributors />
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
 }
 
 export default Home;
