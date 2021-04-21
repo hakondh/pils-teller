@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import UserSettings from '../UserSettings/UserSettings'
-import styles from "./Profile.module.css"
+import UserSettings from "../UserSettings/UserSettings";
+import styles from "./Profile.module.css";
 
 function Profile(props) {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -29,7 +29,7 @@ function Profile(props) {
     );
     const todayDate = Date.parse(new Date());
     const timeDiff = todayDate - regDate;
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) +1;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
     if (days <= 1) return setAverageBeers(consumedBeers);
     let avg = Math.round((consumedBeers / days) * 100) / 100;
     avg = (avg + "").replace(".", ",");
@@ -39,27 +39,31 @@ function Profile(props) {
   return (
     <div className="container">
       <br />
-      {user.image ? <img
-        className={`${styles.ImgSize} decorated-img`}
-        src={"/images/" + user.image}
-        alt="Profilbilde"
-      />
-      : <p>Du har ikke valgt noe profilbilde enda</p>}
-      <div className="box">
-      <h1>{user.name}</h1>
-      <p>
-        Antall pils konsumert: <span>{consumedBeers}</span>
-      </p>
-      {averageBeers !== Infinity && (
-        <p>
-          Det er i gjennomsnitt <span>{averageBeers}</span> pils per dag.
-        </p>
+      {user.image ? (
+        <img
+          className={`${styles.ImgSize} decorated-img`}
+          src={"/images/" + user.image}
+          alt="Profilbilde"
+        />
+      ) : (
+        <p>Du har ikke valgt noe profilbilde enda</p>
       )}
+      <div className="info-container">
+        <div className="box">
+          <h1>{user.name}</h1>
+          <p>
+            Antall pils konsumert: <span>{consumedBeers}</span>
+          </p>
+          {averageBeers !== Infinity && (
+            <p>
+              Det er i gjennomsnitt <span>{averageBeers}</span> pils per dag.
+            </p>
+          )}
+        </div>
+        <div className="box">
+          <UserSettings />
+        </div>
       </div>
-      <div className="box">
-        <UserSettings />
-      </div>
-     
     </div>
   );
 }

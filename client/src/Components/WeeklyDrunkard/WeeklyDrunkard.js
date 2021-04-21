@@ -64,7 +64,7 @@ function WeeklyDrunkard(props) {
             <div>
               <img
                 id="beer-gif"
-                className="decorated-gif"
+                className={styles.DecoratedGif}
                 src="https://media1.tenor.com/images/23c5e7ba7a670ed6f95346231a0f317e/tenor.gif?itemid=14267244"
                 alt="pils-gif"
               />

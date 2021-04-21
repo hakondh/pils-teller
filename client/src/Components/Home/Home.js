@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import "../../App.css";
-import "./Home.css";
+import styles from "./Home.module.css";
 import axios from "axios";
 import WeeklyDrunkard from "../WeeklyDrunkard/WeeklyDrunkard";
 import GreatestContributors from "../GreatestContributors/GreatestContributors";
@@ -49,8 +49,10 @@ function Home(props) {
         <p className="text">...har blitt drukket siden 27/8/2020.</p>
         <br />
         <br />
-        <WeeklyDrunkard></WeeklyDrunkard>
-        <GreatestContributors />
+        <div className="info-container">
+          <WeeklyDrunkard></WeeklyDrunkard>
+          <GreatestContributors />
+        </div>
       </div>
     </section>
   );

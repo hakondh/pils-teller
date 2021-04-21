@@ -35,14 +35,6 @@ h2 {
   color: var(--main-gold);
 }
 
-/* Global css */
-.container {
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-  color: #dcab2d;
-}
-
 .button {
   background: #dcab2d;
   border: 0;

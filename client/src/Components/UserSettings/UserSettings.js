@@ -50,6 +50,8 @@ function UserSettings(props) {
         Last opp
       </button>
       {changed && <p>Profilbilde endret!</p>}
+      <br/>
+      <br/>
     </div>
   );
 }

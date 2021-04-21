@@ -1,16 +1,33 @@
+/* Global css */
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  color: #dcab2d;
+}
+
 /* Box css used globally */
 .box {
   width: 40%;
+  max-width: 25em;
   margin-bottom: 1em;
   padding-left: 1em;
   border: 1px solid var(--main-gold);
   float: left;
   background-color: black;
+  margin-left: 1em;
 }
 
 @media (max-width: 768px) {
   /* Box css uses globally */
   .box {
     width: 90%;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .info-container {
+    display: flex;
   }
 }
