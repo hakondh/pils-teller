@@ -1,16 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const upload = multer({ dest: "images/" });
 const fs = require("fs");
 const { cloudinary } = require("../utils/cloudinary");
-
-imgur.setAPIUrl("https://api.imgur.com/3/");
-imgur.setCredentials(
-  process.env.IMGUR_EMAIL,
-  process.env.IMGUR_PASSWORD,
-  process.env.IMGUR_CLIENT_ID
-);
 
 router.post("/", async (req, res) => {
   /* const encodedImage = req.files.image.data.toString("base64"); */
