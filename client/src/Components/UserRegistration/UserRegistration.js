@@ -11,6 +11,7 @@ function UserRegistration(props) {
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const history = useHistory();
 
@@ -20,6 +21,7 @@ function UserRegistration(props) {
       setError("Passordene du fylte inn er ikke like.");
       return;
     }
+    setLoading(true);
     axios
       .post("/auth/register", {
         name: name,
@@ -141,7 +143,8 @@ function UserRegistration(props) {
         <input id="image-input" type="file" onChange={fileSelectedHandler} />
         <br />
         <br />
-        <input type="submit" value="Registrer" />
+        <input disabled={loading} type="submit" value="Registrer" />
+        {loading && <p>Oppretter bruker...</p>}
         {error !== "" && <span className="error">{error}</span>}
       </form>
     </div>
