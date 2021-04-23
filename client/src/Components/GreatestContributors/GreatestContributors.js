@@ -28,7 +28,7 @@ function GreatestContributors(props) {
             {greatestContributors.map((greatestContributor) => (
               <img
                 className="decorated-img"
-                src={"/images/" + greatestContributor.image}
+                src={greatestContributor.image}
                 alt={greatestContributor.name + "s profilbilde"}
                 width="40%"
                 height="auto"

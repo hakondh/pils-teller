@@ -7,46 +7,55 @@ function UserSettings(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [changed, setChanged] = useState(false);
   const [error, setError] = useState("");
+  const [preview, setPreview] = useState();
 
   const fileSelectedHandler = (e) => {
     e.preventDefault();
     setSelectedFile(e.target.files[0]);
   };
 
-  const fileUploadHandler = () => {
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const fileUploadHandler = async () => {
     if (!selectedFile) {
       setError("Vennligst velg et bilde først");
       return;
     }
-    const fd = new FormData();
-    fd.append("image", selectedFile, selectedFile.name);
-    console.log(user.image);
+    const encoded = await toBase64(selectedFile);
+    console.log(encoded);
+
+    const body = {
+      data: encoded,
+    };
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    let url = "";
     axios
-      .put("/users/" + user.id + "/image", fd, {
-        onDownloadProgress: (progressEvent) => {
-          console.log(
-            "Upload progress " +
-              Math.round((progressEvent.loaded / progressEvent.total) * 100) +
-              "%"
-          );
-        },
+      .post("/images", body, config)
+      .then((res) => {
+        url = res.data.url;
+        return axios.put(`/users/${user.id}/image`, {
+          image: url,
+        });
       })
       .then((res) => {
-        // Delete the old pic from /images to save space
-        const imageName = JSON.parse(localStorage.getItem("user")).image;
-        if (imageName)
-          axios.delete("/images/" + imageName).catch((err) => console.log(err));
-
         // Set the new image in localStorage
         const user = JSON.parse(localStorage.getItem("user"));
-        user.image = res.data.image;
+        user.image = url;
         localStorage.setItem("user", JSON.stringify(user));
         setChanged(true);
         window.location.reload();
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
   return (
     <div>

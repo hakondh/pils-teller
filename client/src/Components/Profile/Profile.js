@@ -43,7 +43,7 @@ function Profile(props) {
         {user.image ? (
           <img
             className={`${styles.ImgSize} decorated-img`}
-            src={"/images/" + user.image}
+            src={user.image}
             alt="Profilbilde"
           />
         ) : (

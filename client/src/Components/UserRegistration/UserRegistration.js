@@ -16,8 +16,8 @@ function UserRegistration(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(password !== repeatedPassword) {
-      setError("Passordene du fylte inn er ikke like.")
+    if (password !== repeatedPassword) {
+      setError("Passordene du fylte inn er ikke like.");
       return;
     }
     axios
@@ -27,11 +27,10 @@ function UserRegistration(props) {
         password: password,
       })
       .then(async (res) => {
-        
         // Set token and user in localStorage
         localStorage.setItem("token", JSON.stringify(res.data)); // Set token in localStorage
         const user = AuthService.getUser();
-        localStorage.setItem("user", JSON.stringify(user))
+        localStorage.setItem("user", JSON.stringify(user));
 
         // Upload image if added
 
@@ -53,28 +52,43 @@ function UserRegistration(props) {
     setSelectedFile(e.target.files[0]);
   };
 
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
   const fileUploadHandler = async (id) => {
-    const fd = new FormData();
-    fd.append("image", selectedFile, selectedFile.name);
+    if (!selectedFile) return;
+    const encoded = await toBase64(selectedFile);
+    console.log(encoded);
+
+    const body = {
+      data: encoded,
+    };
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    let url = "";
     await axios
-      .put("/users/" + id + "/image", fd, {
-        onDownloadProgress: (progressEvent) => {
-          console.log(
-            "Upload progress " +
-              Math.round((progressEvent.loaded / progressEvent.total) * 100) +
-              "%"
-          );
-        },
+      .post("/images", body, config)
+      .then((res) => {
+        url = res.data.url;
+        return axios.put(`/users/${id}/image`, {
+          image: url,
+        });
       })
       .then((res) => {
         // Set the new image in localStorage
         const user = JSON.parse(localStorage.getItem("user"));
-        user.image = res.data.image;
+        user.image = url;
         localStorage.setItem("user", JSON.stringify(user));
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -117,9 +131,9 @@ function UserRegistration(props) {
           onChange={(e) => setRepeatedPassword(e.target.value)}
           required
         />
-        <br/>
+        <br />
         <label for="image-input">Profilbilde</label>
-        <br/>
+        <br />
         <label className="file-input" for="image-input">
           <i class="fas fa-upload"></i> Trykk for å laste opp
         </label>

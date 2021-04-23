@@ -34,7 +34,7 @@ function WeeklyDrunkard(props) {
                     <img
                       key={i}
                       className={`${styles.ImgSize} decorated-img`}
-                      src={"/images/" + drunkard.image}
+                      src={drunkard.image}
                       alt={drunkard.name + "s profilbilde"}
                       width="1em"
                       height="auto"

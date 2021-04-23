@@ -24,13 +24,18 @@ router.get("/:name", (req, res) => {
 });
 
 //Put an image
-router.put("/:id/image", upload.single("image"), (req, res) => {
-  console.log("PUT /users/:id/image");
-  req.app
-    .get("usersdao")
-    .putImage([req.file.filename, req.params.id], (status, data) => {
-      res.status(status).send({ image: req.file.filename });
-    });
+router.put("/:id/image", (req, res) => {
+  try {
+    console.log("PUT /users/:id/image");
+    req.app
+      .get("usersdao")
+      .putImage([req.body.image, req.params.id], (status, data) => {
+        res.status(status).send();
+      });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Something went wrong");
+  }
 });
 
 // Get sum of beers for a user

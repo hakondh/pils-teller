@@ -6,10 +6,19 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config(); // Access environment variables
 const path = require("path");
+const fileUpload = require("express-fileupload");
+//const bodyParser = require("body-parser"); //Included in express?
 const port = process.env.PORT;
 
-app.use(express.json()); // Body parser
+app.use(express.json({ limit: "50mb" })); // Body parser
+//app.use(bodyParser.urlencoded({extended: true})); //Not needed?
 app.use(cors()); // Fixes CORS block
+
+app.use(
+  fileUpload({
+    createParentPath: true,
+  })
+);
 
 // Setting up the connection pool for database
 /* let pool = mysql.createPool({
