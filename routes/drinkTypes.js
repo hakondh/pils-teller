@@ -10,4 +10,13 @@ router.get("/", (req, res) => {
   });
 });
 
+/* Get drink types count */
+router.get("/count", (req, res) => {
+  console.log("GET /drink-types/count");
+  req.app.get("drinktypesdao").getDrinkTypesCount((status, data) => {
+    res.status(status);
+    res.json(data);
+  });
+});
+
 module.exports = router;
